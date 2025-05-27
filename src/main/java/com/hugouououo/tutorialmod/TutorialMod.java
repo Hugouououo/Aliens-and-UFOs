@@ -1,5 +1,7 @@
 package com.hugouououo.tutorialmod;
 
+import com.hugouououo.tutorialmod.block.ModBlocks;
+import com.hugouououo.tutorialmod.item.ModItemGroups;
 import com.hugouououo.tutorialmod.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
@@ -17,6 +19,8 @@ public class TutorialMod implements ModInitializer {
 	public void onInitialize() {
 
 		ModItems.registerModItems();
+		ModBlocks.registerModBlocks();
+		ModItemGroups.registerItemGroups();
 
 	}
 }

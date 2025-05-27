@@ -1,4 +1,4 @@
-package com.hugouououo.turorialmod;
+package com.hugouououo.tutorialmod;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;

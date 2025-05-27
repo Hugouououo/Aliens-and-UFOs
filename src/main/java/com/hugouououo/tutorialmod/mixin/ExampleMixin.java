@@ -1,4 +1,4 @@
-package com.hugouououo.turorialmod.mixin;
+package com.hugouououo.tutorialmod.mixin;
 
 import net.minecraft.server.MinecraftServer;
 import org.spongepowered.asm.mixin.Mixin;

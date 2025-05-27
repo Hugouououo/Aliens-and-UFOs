@@ -1,4 +1,4 @@
-package com.hugouououo.turorialmod;
+package com.hugouououo.tutorialmod;
 
 import net.fabricmc.api.ClientModInitializer;
 

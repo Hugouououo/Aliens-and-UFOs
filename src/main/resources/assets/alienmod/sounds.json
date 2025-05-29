@@ -1,0 +1,10 @@
+{
+  "laser_shoot": {
+    "sounds": [
+      {
+        "name": "alienmod:laser_shoot",
+        "stream": false
+      }
+    ]
+  }
+}

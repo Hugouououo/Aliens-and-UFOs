@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "tutorialmod",
+	"id": "alienmod",
 	"version": "${version}",
 	"name": "Tutorial Mod Primeiro mod",
 	"description": "OII MEU PROMEIRO MOD NO JAVA",
@@ -12,21 +12,21 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "MIT",
-	"icon": "assets/tutorialmod/icon.png",
+	"icon": "assets/alienmod/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.hugouououo.tutorialmod.TutorialMod"
+			"com.hugouououo.alienmod.AlienMod"
 		],
 		"fabric-datagen": [
-			"com.hugouououo.tutorialmod.TutorialModDataGenerator"
+			"com.hugouououo.alienmod.AlienModDataGenerator"
 		],
 		"client": [
-			"com.hugouououo.tutorialmod.TutorialModClient"
+			"com.hugouououo.alienmod.AlienModClient"
 		]
 	},
 	"mixins": [
-		"tutorialmod.mixins.json"
+		"alienmod.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.14",

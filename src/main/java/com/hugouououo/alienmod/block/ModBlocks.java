@@ -4,6 +4,7 @@ import com.hugouououo.alienmod.AlienMod;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.SlabBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
@@ -51,12 +52,13 @@ public class ModBlocks {
 
     public static final Block ALIEN_GOO_BLOCK = registerBlock(
             "alien_goo_block",
-            Block::new,                             // NOVO NA 1.21.4 !!!!!!!!!!!!!!!!!!!!!
+            Block::new,
             AbstractBlock.Settings.create()
-                    .sounds(BlockSoundGroup.SLIME)
+                    .sounds(BlockSoundGroup.HONEY)
                     .breakInstantly()
                     .burnable()
-                    .nonOpaque(),
+                    .nonOpaque()
+                    .slipperiness(1.5f),
             true
     );
 
@@ -64,10 +66,19 @@ public class ModBlocks {
             "alien_steel",
             Block::new,                             // NOVO NA 1.21.4 !!!!!!!!
             AbstractBlock.Settings.create()
-                    .strength(1f)
+                    .strength(2f)
                     .requiresTool()
                     .sounds(BlockSoundGroup.NETHERITE),
             true
     );
 
+    public static final Block ALIEN_STEEL_SLAB = registerBlock(
+            "alien_steel_slab",
+            SlabBlock::new,
+            AbstractBlock.Settings.create()
+                    .strength(2f)
+                    .requiresTool()
+                    .sounds(BlockSoundGroup.NETHERITE),
+            true
+    );
 }

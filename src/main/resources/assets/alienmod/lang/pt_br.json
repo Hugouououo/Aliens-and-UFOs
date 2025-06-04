@@ -1,12 +1,19 @@
 {
-  "itemgroup.alienmod.alien": "Alienígena",
+  "itemgroup.alienmod.alien": "Alien",
 
   "item.alienmod.alien_goo": "Gosma Alienígena",
   "item.alienmod.alien_device": "Dispositivo Alienígena",
+  "item.alienmod.alien_steel_ingot": "Barra de Aço Alienígena",
   "item.alienmod.ray_gun": "Arma Laser",
+  "item.alienmod.alien_spawn_egg": "Ovo Alienígena MUDAR NOME",
 
   "item.alienmod.alien_goo_block": "Bloco de Gosma Alienígena",
   "item.alienmod.alien_steel": "Aço Alienígena",
-  "item.alienmod.alien_steel_ingot": "Barra de Aço Alienígena"
+  "item.alienmod.alien_steel_slab": "Laje de Aço Alienígena",
+
+  "entity.alienmod.alien": "Alienígena",
+
+  "painting.alienmod.believe.title": "Acreditar",
+  "painting.alienmod.believe.author": "Crente Desconhecido"
 
 }

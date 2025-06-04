@@ -16,8 +16,9 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
     @Override
     public void generate() {
 
-        addDrop(ModBlocks.ALIEN_GOO_BLOCK, oreDrops(ModBlocks.ALIEN_GOO_BLOCK, ModItems.ALIEN_GOO));
+        addDrop(ModBlocks.ALIEN_GOO_BLOCK);
         addDrop(ModBlocks.ALIEN_STEEL);
+        addDrop(ModBlocks.ALIEN_STEEL_SLAB, slabDrops(ModBlocks.ALIEN_STEEL_SLAB));
 
     }
 }

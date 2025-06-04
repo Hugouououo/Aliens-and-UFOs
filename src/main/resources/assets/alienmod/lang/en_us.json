@@ -3,9 +3,16 @@
 
   "item.alienmod.alien_goo": "Alien Goo",
   "item.alienmod.alien_device": "Alien Device",
+  "item.alienmod.alien_steel_ingot": "Alien Steel Ingot",
   "item.alienmod.ray_gun": "Ray Gun",
+  "item.alienmod.alien_spawn_egg": "Alien Spawn Egg",
 
   "item.alienmod.alien_goo_block": "Alien Goo Block",
   "item.alienmod.alien_steel": "Alien Steel",
-  "item.alienmod.alien_steel_ingot": "Alien Steel Ingot"
+  "item.alienmod.alien_steel_slab": "Alien Steel Slab",
+
+  "entity.alienmod.alien": "Alien",
+
+  "painting.alienmod.believe.title": "Believe",
+  "painting.alienmod.believe.author": "Unknown Believer"
 }

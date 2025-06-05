@@ -4,8 +4,6 @@ import com.hugouououo.alienmod.AlienMod;
 import com.hugouououo.alienmod.entity.custom.AlienEntity;
 import com.hugouououo.alienmod.entity.custom.LaserProjectileEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
-import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registries;
@@ -19,7 +17,7 @@ public class ModEntities {
         AlienMod.LOGGER.info("registrando entidades");
     }
 
-    // JEITO DO COMENTARIO DO YOUTUBE
+    // jeito 1
     public static final EntityType<AlienEntity> ALIEN = Registry.register(
             Registries.ENTITY_TYPE,
             RegistryKey.of(Registries.ENTITY_TYPE.getKey(), Identifier.of(AlienMod.MOD_ID, "alien")),
@@ -31,7 +29,7 @@ public class ModEntities {
                     .build(RegistryKey.of(Registries.ENTITY_TYPE.getKey(), Identifier.of(AlienMod.MOD_ID, "alien")))
     );
 
-    // JEITO DO KAUPENJOE
+    // jeito 2 (kaupenjoe)
     private static final RegistryKey<EntityType<?>> LASER_KEY =
             RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(AlienMod.MOD_ID, "alien"));
 

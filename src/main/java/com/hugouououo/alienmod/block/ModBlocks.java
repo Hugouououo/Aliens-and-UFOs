@@ -58,7 +58,7 @@ public class ModBlocks {
                     .breakInstantly()
                     .burnable()
                     .nonOpaque()
-                    .slipperiness(1.5f),
+                    .slipperiness(1.25f),
             true
     );
 

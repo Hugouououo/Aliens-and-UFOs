@@ -1,10 +1,8 @@
 {
   "laser_shoot": {
+    "subtitle": "sounds.alienmod.laser_shoot",
     "sounds": [
-      {
-        "name": "alienmod:laser_shoot",
-        "stream": false
-      }
+      "alienmod:laser_shoot"
     ]
   }
 }

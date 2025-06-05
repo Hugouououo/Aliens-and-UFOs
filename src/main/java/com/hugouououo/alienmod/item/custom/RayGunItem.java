@@ -2,6 +2,7 @@ package com.hugouououo.alienmod.item.custom;
 
 import com.hugouououo.alienmod.entity.custom.LaserProjectileEntity;
 import com.hugouououo.alienmod.entity.ModEntities;
+import com.hugouououo.alienmod.sound.ModSounds;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -42,22 +43,18 @@ public class RayGunItem extends Item {
             Vec3d direction = shooter.getRotationVec(1.0F).normalize();
             Vec3d eyePos = shooter.getEyePos().add(direction.multiply(0));
             laser.setPosition(eyePos.x, eyePos.y, eyePos.z);
-            laser.setVelocity(direction.multiply(2.5));
+            laser.setVelocity(direction.multiply(3.5)); // Velocidade do laser
             laser.setOwner(shooter);
 
             world.spawnEntity(laser);
         }
-
-        // Som (opcional)
         world.playSound(
                 null,
                 shooter.getX(),
                 shooter.getY(),
                 shooter.getZ(),
-                SoundEvents.ENTITY_BLAZE_SHOOT,
-                SoundCategory.PLAYERS,
-                1.0F,
-                1.0F
+                ModSounds.LASER_SHOOT,
+                SoundCategory.PLAYERS
         );
     }
 }

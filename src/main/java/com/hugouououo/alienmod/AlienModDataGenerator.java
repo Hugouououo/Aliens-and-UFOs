@@ -1,8 +1,12 @@
 package com.hugouououo.alienmod;
 
 import com.hugouououo.alienmod.datagen.*;
+import com.hugouououo.alienmod.world.ModConfiguredFeatures;
+import com.hugouououo.alienmod.world.ModPlacedFeatures;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.minecraft.registry.RegistryBuilder;
+import net.minecraft.registry.RegistryKeys;
 
 public class AlienModDataGenerator implements DataGeneratorEntrypoint {
 	@Override
@@ -15,5 +19,12 @@ public class AlienModDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(ModModelProvider::new);
 		pack.addProvider(ModRecipeProvider::new);
 
+	}
+
+	@Override
+	public void buildRegistry(RegistryBuilder registryBuilder) {
+
+		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
+		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
 	}
 }

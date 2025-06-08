@@ -11,6 +11,7 @@ import net.minecraft.client.render.entity.state.EntityRenderState;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 
 public class LaserProjectileRenderer extends EntityRenderer<LaserProjectileEntity, EntityRenderState> {
 
@@ -31,6 +32,10 @@ public class LaserProjectileRenderer extends EntityRenderer<LaserProjectileEntit
 
         matrices.pop();
         super.render(state, matrices, vertexConsumers, light);
+    }
+
+    protected int getBlockLight(LaserProjectileEntity laserProjectileEntity, BlockPos blockPos) {
+        return 15;
     }
 
     @Override

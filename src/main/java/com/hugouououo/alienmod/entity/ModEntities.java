@@ -36,5 +36,5 @@ public class ModEntities {
     public static final EntityType<LaserProjectileEntity> LASER_PROJECTILE = Registry.register(Registries.ENTITY_TYPE,
             Identifier.of(AlienMod.MOD_ID, "laser"),
             EntityType.Builder.<LaserProjectileEntity>create(LaserProjectileEntity::new, SpawnGroup.MISC)
-                    .dimensions(0.15f, 0.1f).build(LASER_KEY));
+                    .dimensions(0.5f, 0.5f).build(LASER_KEY));
 }

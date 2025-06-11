@@ -1,11 +1,24 @@
 package com.hugouououo.alienmod.entity.client;
 
-import net.minecraft.client.render.entity.state.ArmedEntityRenderState;
+import com.hugouououo.alienmod.entity.custom.AlienEntity;
+import net.minecraft.client.render.entity.state.BipedEntityRenderState; // Certifique-se deste import
 import net.minecraft.client.render.entity.state.LivingEntityRenderState;
-import net.minecraft.entity.AnimationState;
 
-public class AlienRenderState extends ArmedEntityRenderState {
+public class AlienRenderState extends LivingEntityRenderState {
 
-    public final AnimationState idleAnimationState = new AnimationState();
+    private AlienEntity alienEntity;
+    public float tickDelta;
+    public float handSwingProgress;
 
+    public AlienRenderState() {
+        //this.alienEntity = alienEntity;
+    }
+
+    public AlienEntity getAlienEntity() {
+        return alienEntity;
+    }
+
+    public void setAlienEntity(AlienEntity alienEntity) {
+        this.alienEntity = alienEntity;
+    }
 }

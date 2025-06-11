@@ -4,6 +4,7 @@ import com.hugouououo.alienmod.entity.custom.LaserProjectileEntity;
 import com.hugouououo.alienmod.entity.ModEntities;
 import com.hugouououo.alienmod.sound.ModSounds;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ProjectileDeflection;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;

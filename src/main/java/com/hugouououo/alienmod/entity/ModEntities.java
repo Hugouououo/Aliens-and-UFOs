@@ -21,17 +21,16 @@ public class ModEntities {
     public static final EntityType<AlienEntity> ALIEN = Registry.register(
             Registries.ENTITY_TYPE,
             RegistryKey.of(Registries.ENTITY_TYPE.getKey(), Identifier.of(AlienMod.MOD_ID, "alien")),
-            // O .build() agora recebe o RegistryKey
             FabricEntityType.Builder.createMob(AlienEntity::new, SpawnGroup.CREATURE, builder -> {
                         builder.defaultAttributes(AlienEntity::createAttributes);
                         return builder;
-                    }).dimensions(1f,1.5f)
+                    }).dimensions(0.6F, 1.5F)
                     .build(RegistryKey.of(Registries.ENTITY_TYPE.getKey(), Identifier.of(AlienMod.MOD_ID, "alien")))
     );
 
     // jeito 2 (kaupenjoe)
     private static final RegistryKey<EntityType<?>> LASER_KEY =
-            RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(AlienMod.MOD_ID, "alien"));
+            RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(AlienMod.MOD_ID, "laser"));
 
     public static final EntityType<LaserProjectileEntity> LASER_PROJECTILE = Registry.register(Registries.ENTITY_TYPE,
             Identifier.of(AlienMod.MOD_ID, "laser"),

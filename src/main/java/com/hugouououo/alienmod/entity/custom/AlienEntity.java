@@ -1,33 +1,40 @@
 package com.hugouououo.alienmod.entity.custom;
 
+import com.hugouououo.alienmod.entity.ModEntities;
+import com.hugouououo.alienmod.entity.ai.goal.AlienRangedAttackGoal;
+import com.hugouououo.alienmod.item.ModItems;
+import com.hugouououo.alienmod.item.custom.RayGunItem;
+import com.hugouououo.alienmod.sound.ModSounds;
 import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.Angerable;
-import net.minecraft.entity.mob.EndermanEntity;
-import net.minecraft.entity.mob.EndermiteEntity;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.TimeHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import net.minecraft.entity.ai.goal.BowAttackGoal;
 
 import java.util.UUID;
 
-import static net.minecraft.entity.mob.Angriness.ANGRY;
-
-public class AlienEntity extends HostileEntity implements Angerable {
+public class AlienEntity extends HostileEntity implements Angerable, RangedAttackMob {
 
     // Variaveis
     private int ageWhenTargetSet;
@@ -42,19 +49,86 @@ public class AlienEntity extends HostileEntity implements Angerable {
     // Construtor
     public AlienEntity(EntityType<? extends AlienEntity> entityType, World world) {
         super(entityType, world);
+        this.updateAttackType();
     }
 
     // Objetivos
+    //private final AlienRangedAttackGoal<AlienEntity> alienRangedAttackGoal = new AlienRangedAttackGoal<>(this, 1.0, 20, 15.0F);
     @Override
     protected void initGoals() {
-        this.goalSelector.add(0, new MeleeAttackGoal(this, 1.0, false));
+        //this.goalSelector.remove(this.alienRangedAttackGoal);
+
+        this.goalSelector.add(0, new AlienRangedAttackGoal<>(this, 10, 10));
         this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.add(2, new LookAroundGoal(this));
         this.goalSelector.add(3, new WanderAroundFarGoal(this, 1.0, 0.0F));
 
-        this.targetSelector.add(0, new RevengeGoal(this).setGroupRevenge());
-        this.targetSelector.add(1, new ActiveTargetGoal<>(this, EndermiteEntity.class, true, false));
+        this.targetSelector.add(0, new ActiveTargetGoal(this, PlayerEntity.class, true));
+
+        this.targetSelector.add(1, new RevengeGoal(this).setGroupRevenge());
         this.targetSelector.add(2, new UniversalAngerGoal<>(this, false));
+
+        this.updateAttackType();
+    }
+
+    public void updateAttackType() {
+//        if (this.getWorld() != null && !this.getWorld().isClient()) {
+//            this.goalSelector.remove(this.alienRangedAttackGoal);
+//
+//            ItemStack itemStack = this.getMainHandStack();
+//            if (itemStack.isOf(ModItems.RAY_GUN)) {
+//                this.goalSelector.add(0, this.alienRangedAttackGoal);
+//            }
+//        }
+    }
+
+    @Override
+    public void shootAt(LivingEntity target, float pullProgress) {
+
+        if (!this.getWorld().isClient()) {
+            LaserProjectileEntity laser = new LaserProjectileEntity(ModEntities.LASER_PROJECTILE, this.getWorld());
+            Vec3d direction = this.getRotationVec(1.0F).normalize();
+            // pode ser necessário um modelpart para a mão no alienmodel
+            Vec3d spawnPos = this.getEyePos().add(direction.multiply(1.0)); // ajustar se sair do olho
+            laser.setPosition(spawnPos.x, spawnPos.y, spawnPos.z);
+            laser.setVelocity(direction.multiply(3.5));
+            laser.setPitch(this.getPitch());
+            laser.setYaw(this.getYaw());
+            laser.setOwner(this);
+            this.getWorld().spawnEntity(laser);
+
+            // som
+            float pitch = this.getWorld().random.nextFloat() * 0.4F + 1.0F;
+            float volume = 0.75F;
+            BlockPos soundPos = this.getBlockPos();
+            this.getWorld().playSound(
+                    null,
+                    soundPos,
+                    ModSounds.LASER_SHOOT,
+                    SoundCategory.HOSTILE,
+                    volume,
+                    pitch
+            );
+        }
+    }
+
+    @Override
+    public boolean canUseRangedWeapon(net.minecraft.item.RangedWeaponItem weapon) {
+        return weapon instanceof RayGunItem;
+    }
+
+    @Override
+    protected void initEquipment(net.minecraft.util.math.random.Random random, net.minecraft.world.LocalDifficulty localDifficulty) {
+        super.initEquipment(random, localDifficulty);
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.RAY_GUN));
+    }
+
+    @Override
+    public void onEquipStack(EquipmentSlot slot, ItemStack oldStack, ItemStack newStack) {
+        super.onEquipStack(slot, oldStack, newStack);
+        if (!this.getWorld().isClient()) {
+            this.updateAttackType();
+        }
     }
 
     // Atributos
@@ -118,7 +192,7 @@ public class AlienEntity extends HostileEntity implements Angerable {
         return SoundEvents.ENTITY_ENDERMAN_DEATH;
     }
 
-    // Animacoes IDLE
+    // IDLE
     private void setupAnimationState(){
         if(this.idleAnimationTimeout <= 0){
             this.idleAnimationTimeout = 40;

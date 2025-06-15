@@ -1,0 +1,9 @@
+// 1.21.5	-999999999-01-01T00:00:00	Tutorial Mod Primeiro mod/AlienMod Recipes
+59af31bd6c77fa9f70ce21890b9ea1c5e4084ba9 data/alienmod/advancement/recipes/misc/alien_goo.json
+b10785a6e8b26f0314abe6010b020b22d577a8e6 data/alienmod/advancement/recipes/misc/alien_goo_block.json
+b882cb156cd8441fe33e7954a84253da0119eddc data/alienmod/advancement/recipes/misc/alien_steel.json
+46ffd5b8fdf572fddc1c9a27ba8299f75bf3c4e6 data/alienmod/advancement/recipes/misc/alien_steel_ingot.json
+6f0ddbfb2dca3188a709d27a05effa088cb27ad4 data/alienmod/recipe/alien_goo.json
+a4afe8e77342d4f3586a713241cff74fe358920b data/alienmod/recipe/alien_goo_block.json
+ffde0afd2601288ed4c1e8f1519558686ab057cc data/alienmod/recipe/alien_steel.json
+d553297d1f042b9b009ca7f6a1ab7729342b5d8b data/alienmod/recipe/alien_steel_ingot.json

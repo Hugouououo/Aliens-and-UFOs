@@ -30,7 +30,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import net.minecraft.entity.ai.goal.BowAttackGoal;
 
 import java.util.UUID;
 
@@ -53,33 +52,31 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
     }
 
     // Objetivos
-    //private final AlienRangedAttackGoal<AlienEntity> alienRangedAttackGoal = new AlienRangedAttackGoal<>(this, 1.0, 20, 15.0F);
+    private final AlienRangedAttackGoal<AlienEntity> alienRangedAttackGoal = new AlienRangedAttackGoal<>(this, 1.0, 20, 15.0F);
+
     @Override
     protected void initGoals() {
-        //this.goalSelector.remove(this.alienRangedAttackGoal);
 
-        this.goalSelector.add(0, new AlienRangedAttackGoal<>(this, 10, 10));
+        //this.goalSelector.add(0, new AlienRangedAttackGoal<>(this, 10, 10, 10));
         this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.add(2, new LookAroundGoal(this));
         this.goalSelector.add(3, new WanderAroundFarGoal(this, 1.0, 0.0F));
-
-        this.targetSelector.add(0, new ActiveTargetGoal(this, PlayerEntity.class, true));
-
-        this.targetSelector.add(1, new RevengeGoal(this).setGroupRevenge());
+        this.targetSelector.add(0, new RevengeGoal(this).setGroupRevenge());
+        //this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.add(2, new UniversalAngerGoal<>(this, false));
 
         this.updateAttackType();
     }
 
     public void updateAttackType() {
-//        if (this.getWorld() != null && !this.getWorld().isClient()) {
-//            this.goalSelector.remove(this.alienRangedAttackGoal);
-//
-//            ItemStack itemStack = this.getMainHandStack();
-//            if (itemStack.isOf(ModItems.RAY_GUN)) {
-//                this.goalSelector.add(0, this.alienRangedAttackGoal);
-//            }
-//        }
+        if (this.getWorld() != null && !this.getWorld().isClient()) {
+            this.goalSelector.remove(this.alienRangedAttackGoal);
+
+            ItemStack itemStack = this.getMainHandStack();
+            if (itemStack.isOf(ModItems.RAY_GUN)) {
+                this.goalSelector.add(0, this.alienRangedAttackGoal);
+            }
+        }
     }
 
     @Override
@@ -87,9 +84,8 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
 
         if (!this.getWorld().isClient()) {
             LaserProjectileEntity laser = new LaserProjectileEntity(ModEntities.LASER_PROJECTILE, this.getWorld());
-            Vec3d direction = this.getRotationVec(1.0F).normalize();
-            // pode ser necessário um modelpart para a mão no alienmodel
-            Vec3d spawnPos = this.getEyePos().add(direction.multiply(1.0)); // ajustar se sair do olho
+            Vec3d direction = target.getPos().subtract(this.getPos()).normalize();
+            Vec3d spawnPos = this.getEyePos().add(direction.multiply(1.0));
             laser.setPosition(spawnPos.x, spawnPos.y, spawnPos.z);
             laser.setVelocity(direction.multiply(3.5));
             laser.setPitch(this.getPitch());
@@ -204,6 +200,12 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
     @Override
     public void tick() {
         super.tick();
+        if (!this.getWorld().isClient()) {
+            if (!this.getMainHandStack().isOf(ModItems.RAY_GUN)) {
+                this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.RAY_GUN));
+                this.updateAttackType();
+            }
+        }
         if (this.getWorld().isClient()) {
             setupAnimationState();
         }

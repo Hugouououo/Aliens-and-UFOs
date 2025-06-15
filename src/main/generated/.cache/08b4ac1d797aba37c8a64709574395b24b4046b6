@@ -1,0 +1,4 @@
+// 1.21.5	-999999999-01-01T00:00:00	Tutorial Mod Primeiro mod/Block Loot Tables
+784d510310a1c1da2d6a7b5e432c396a4c5df2a1 data/alienmod/loot_table/blocks/alien_goo_block.json
+df542f600e535795532527803da8403a1e9fdce7 data/alienmod/loot_table/blocks/alien_steel.json
+cf8ac8a0045a74f2a6c917388be3a6a1b8ef5e67 data/alienmod/loot_table/blocks/alien_steel_slab.json

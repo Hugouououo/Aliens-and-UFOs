@@ -16,13 +16,14 @@ public class AlienModClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
 
-        //Transparencia no bloco de gosma
+        //Transparência no bloco de gosma
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ALIEN_GOO_BLOCK, RenderLayer.getTranslucent());
 
         // Alien
         EntityModelLayerRegistry.registerModelLayer(AlienModel.ALIEN, AlienModel::getTexturedModelData);
         EntityRendererRegistry.register(ModEntities.ALIEN, AlienRenderer::new);
 
+        // Laser
         EntityModelLayerRegistry.registerModelLayer(LaserProjectileModel.LASER_PROJECTILE, LaserProjectileModel::getTexturedModelData);
         EntityRendererRegistry.register(ModEntities.LASER_PROJECTILE, LaserProjectileRenderer::new);
 

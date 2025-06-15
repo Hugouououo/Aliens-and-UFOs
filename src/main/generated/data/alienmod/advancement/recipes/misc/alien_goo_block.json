@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_alien_goo": {
+      "conditions": {
+        "items": [
+          {
+            "items": "alienmod:alien_goo"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "alienmod:alien_goo_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_alien_goo"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "alienmod:alien_goo_block"
+    ]
+  }
+}

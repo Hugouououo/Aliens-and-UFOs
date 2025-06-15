@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "alienmod:alien_goo_block"
+  ],
+  "result": {
+    "count": 4,
+    "id": "alienmod:alien_goo"
+  }
+}

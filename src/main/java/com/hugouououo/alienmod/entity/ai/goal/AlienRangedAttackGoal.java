@@ -31,28 +31,22 @@ public class AlienRangedAttackGoal<T extends HostileEntity & RangedAttackMob> ex
         this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
     }
 
-    public AlienRangedAttackGoal(T actor, double speed, float squaredRange) {
-        this.actor = actor;
-        this.speed = speed;
-        this.squaredRange = squaredRange;
-    }
-
     public void setAttackInterval(int attackInterval) {
         this.attackInterval = attackInterval;
     }
 
     @Override
     public boolean canStart() {
-        return this.actor.getTarget() == null ? false : this.isHoldingBow();
+        return this.actor.getTarget() != null && this.isHoldingRayGun();
     }
 
-    protected boolean isHoldingBow() {
-        return this.actor.isHolding(ModItems.RAY_GUN);
+    protected boolean isHoldingRayGun() {
+        return this.actor.getMainHandStack().isOf(ModItems.RAY_GUN);
     }
 
     @Override
     public boolean shouldContinue() {
-        return (this.canStart() || !this.actor.getNavigation().isIdle()) && this.isHoldingBow();
+        return (this.canStart() || !this.actor.getNavigation().isIdle()) && this.isHoldingRayGun();
     }
 
     @Override
@@ -77,72 +71,30 @@ public class AlienRangedAttackGoal<T extends HostileEntity & RangedAttackMob> ex
 
     @Override
     public void tick() {
-        LivingEntity livingEntity = this.actor.getTarget();
-        if (livingEntity != null) {
-            double d = this.actor.squaredDistanceTo(livingEntity.getX(), livingEntity.getY(), livingEntity.getZ());
-            boolean bl = this.actor.getVisibilityCache().canSee(livingEntity);
-            boolean bl2 = this.targetSeeingTicker > 0;
-            if (bl != bl2) {
-                this.targetSeeingTicker = 0;
-            }
+        LivingEntity target = this.actor.getTarget();
+        if (target != null) {
+            double distance = this.actor.squaredDistanceTo(target.getX(), target.getY(), target.getZ());
+            boolean canSee = this.actor.getVisibilityCache().canSee(target);
 
-            if (bl) {
-                this.targetSeeingTicker++;
+            if (canSee) {
+                this.targetSeeingTicker = Math.min(this.targetSeeingTicker + 1, 20);
             } else {
-                this.targetSeeingTicker--;
+                this.targetSeeingTicker = Math.max(this.targetSeeingTicker - 1, -60);
             }
 
-            if (!(d > this.squaredRange) && this.targetSeeingTicker >= 20) {
+            if (distance <= this.squaredRange && this.targetSeeingTicker >= 10) {
                 this.actor.getNavigation().stop();
-                this.combatTicks++;
             } else {
-                this.actor.getNavigation().startMovingTo(livingEntity, this.speed);
-                this.combatTicks = -1;
+                this.actor.getNavigation().startMovingTo(target, this.speed);
             }
 
-            if (this.combatTicks >= 20) {
-                if (this.actor.getRandom().nextFloat() < 0.3) {
-                    this.movingToLeft = !this.movingToLeft;
-                }
+            this.actor.lookAtEntity(target, 30.0F, 30.0F);
 
-                if (this.actor.getRandom().nextFloat() < 0.3) {
-                    this.backward = !this.backward;
-                }
-
-                this.combatTicks = 0;
-            }
-
-            if (this.combatTicks > -1) {
-                if (d > this.squaredRange * 0.75F) {
-                    this.backward = false;
-                } else if (d < this.squaredRange * 0.25F) {
-                    this.backward = true;
-                }
-
-                this.actor.getMoveControl().strafeTo(this.backward ? -0.5F : 0.5F, this.movingToLeft ? 0.5F : -0.5F);
-                if (this.actor.getControllingVehicle() instanceof MobEntity mobEntity) {
-                    mobEntity.lookAtEntity(livingEntity, 30.0F, 30.0F);
-                }
-
-                this.actor.lookAtEntity(livingEntity, 30.0F, 30.0F);
-            } else {
-                this.actor.getLookControl().lookAt(livingEntity, 30.0F, 30.0F);
-            }
-
-            if (this.actor.isUsingItem()) {
-                if (!bl && this.targetSeeingTicker < -60) {
-                    this.actor.clearActiveItem();
-                } else if (bl) {
-                    int i = this.actor.getItemUseTime();
-                    if (i >= 20) {
-                        this.actor.clearActiveItem();
-                        this.actor.shootAt(livingEntity, BowItem.getPullProgress(i));
-                        this.cooldown = this.attackInterval;
-                    }
-                }
-            } else if (--this.cooldown <= 0 && this.targetSeeingTicker >= -60) {
-                this.actor.setCurrentHand(ProjectileUtil.getHandPossiblyHolding(this.actor, ModItems.RAY_GUN));
+            if (--this.cooldown <= 0 && canSee) {
+                this.actor.shootAt(target, 1.0f); // O pullProgress pode ser ignorado na sua implementação
+                this.cooldown = this.attackInterval;
             }
         }
     }
+
 }

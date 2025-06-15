@@ -21,11 +21,12 @@ public class LaserProjectileEntity extends ProjectileEntity {
         super(entityType, world);
         this.setNoGravity(true);
     }
-    public LaserProjectileEntity(EntityType<? extends LaserProjectileEntity> entityType, LivingEntity shooter, World world) {
-        super(entityType, world);
-        this.setOwner(shooter);
-        this.setNoGravity(true);
-    }
+    
+//    public LaserProjectileEntity(EntityType<? extends LaserProjectileEntity> entityType, LivingEntity shooter, World world) {
+//        super(entityType, world);
+//        this.setOwner(shooter);
+//        this.setNoGravity(true);
+//    }
 
     @Override
     public void tick() {
@@ -75,7 +76,6 @@ public class LaserProjectileEntity extends ProjectileEntity {
     @Override
     protected void onBlockHit(BlockHitResult blockHitResult) {
         super.onBlockHit(blockHitResult);
-
         // partículas
 //        if (this.getWorld() instanceof ServerWorld serverWorld && !this.getWorld().isClient()) {
 //            //ServerWorld serverWorld = (ServerWorld) this.getWorld();

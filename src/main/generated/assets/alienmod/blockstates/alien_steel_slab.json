@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "alienmod:block/alien_steel_slab"
+    },
+    "type=double": {
+      "model": "alienmod:block/alien_steel"
+    },
+    "type=top": {
+      "model": "alienmod:block/alien_steel_slab_top"
+    }
+  }
+}

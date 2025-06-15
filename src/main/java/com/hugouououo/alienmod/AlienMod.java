@@ -20,17 +20,9 @@ import org.slf4j.LoggerFactory;
 
 public class AlienMod implements ModInitializer {
 
-
 	public static final String MOD_ID = "alienmod";
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-
-//	private static SoundEvent registerSoundEvent() {
-//		return Registry.register(Registries.SOUND_EVENT,
-//				Identifier.of(MOD_ID, "laser_shoot"),
-//				SoundEvent.of(Identifier.of(MOD_ID, "laser_shoot")));
-//	}
-//	public static final SoundEvent LASER_SHOOT_SOUND_EVENT = registerSoundEvent();
 
 	@Override
 	public void onInitialize() {

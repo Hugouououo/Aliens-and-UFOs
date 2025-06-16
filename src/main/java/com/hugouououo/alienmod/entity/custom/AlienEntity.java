@@ -44,6 +44,8 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
     private static final TrackedData<Boolean> ANGRY = DataTracker.registerData(AlienEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
+    private static final UniformIntProvider ANGRY_SOUND_DELAY_RANGE = TimeHelper.betweenSeconds(0, 1); // Intervalo para o atraso do som
+    private int angrySoundDelay;
 
     // Construtor
     public AlienEntity(EntityType<? extends AlienEntity> entityType, World world) {
@@ -95,7 +97,7 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
 
             // som
             float pitch = this.getWorld().random.nextFloat() * 0.4F + 1.0F;
-            float volume = 0.75F;
+            float volume = 0.50F;
             BlockPos soundPos = this.getBlockPos();
             this.getWorld().playSound(
                     null,
@@ -139,6 +141,9 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
 
     @Override
     public void setTarget(@Nullable LivingEntity target) {
+        if (this.getTarget() == null && target != null) {
+            this.angrySoundDelay = ANGRY_SOUND_DELAY_RANGE.get(this.random);
+        }
         super.setTarget(target);
         if (target == null) {
             this.ageWhenTargetSet = 0;
@@ -187,6 +192,16 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
     protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_ENDERMAN_DEATH;
     }
+    private void playAngrySound() {
+        this.getWorld().playSound(
+                null,
+                this.getBlockPos(),
+                ModSounds.RAY_GUN_LOAD,
+                SoundCategory.HOSTILE,
+                this.getSoundVolume() * 2.0F,
+                this.getSoundPitch() * 1.8F
+        );
+    }
 
     // IDLE
     private void setupAnimationState(){
@@ -197,6 +212,7 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
             --this.idleAnimationTimeout;
         }
     }
+
     @Override
     public void tick() {
         super.tick();
@@ -208,6 +224,13 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
         }
         if (this.getWorld().isClient()) {
             setupAnimationState();
+        }
+        // Logica p som de raiva
+        if (this.angrySoundDelay > 0) { //
+            this.angrySoundDelay--; //
+            if (this.angrySoundDelay == 0) { //
+                this.playAngrySound(); //
+            }
         }
     }
 }

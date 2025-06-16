@@ -58,7 +58,7 @@ public class LaserProjectileEntity extends ProjectileEntity {
         Entity entity = entityHitResult.getEntity();
         if (this.getOwner() instanceof LivingEntity owner && this.getWorld() instanceof ServerWorld serverWorld) {
             DamageSource source = serverWorld.getDamageSources().mobProjectile(this, owner);
-            entity.damage(serverWorld, source, 8.0F);
+            entity.damage(serverWorld, source, 6.0F); // Dano
 
             // partículas
             if (!this.getWorld().isClient()) {

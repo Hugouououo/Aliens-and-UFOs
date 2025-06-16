@@ -22,6 +22,7 @@ public class AlienRangedAttackGoal<T extends HostileEntity & RangedAttackMob> ex
     private boolean movingToLeft;
     private boolean backward;
     private int combatTicks = -1;
+    private int chargeTicks; // Adicionada para o atraso antes de atirar
 
     public AlienRangedAttackGoal(T actor, double speed, int attackInterval, float range) {
         this.actor = actor;
@@ -53,6 +54,7 @@ public class AlienRangedAttackGoal<T extends HostileEntity & RangedAttackMob> ex
     public void start() {
         super.start();
         this.actor.setAttacking(true);
+        this.chargeTicks = 0;
     }
 
     @Override
@@ -61,6 +63,7 @@ public class AlienRangedAttackGoal<T extends HostileEntity & RangedAttackMob> ex
         this.actor.setAttacking(false);
         this.targetSeeingTicker = 0;
         this.cooldown = -1;
+        this.chargeTicks = 0;
         this.actor.clearActiveItem();
     }
 
@@ -91,10 +94,17 @@ public class AlienRangedAttackGoal<T extends HostileEntity & RangedAttackMob> ex
             this.actor.lookAtEntity(target, 30.0F, 30.0F);
 
             if (--this.cooldown <= 0 && canSee) {
-                this.actor.shootAt(target, 1.0f); // O pullProgress pode ser ignorado na sua implementação
-                this.cooldown = this.attackInterval;
+                if (this.chargeTicks < 20) { // 20 = 1 segundo
+                    this.chargeTicks++;
+                } else {
+                    this.actor.shootAt(target, 1.0f);
+                    this.cooldown = this.attackInterval;
+                    this.chargeTicks = 0;
+                }
+            }//else if (!canSee || this.cooldown > 0) {
+            else{
+                this.chargeTicks = 0;
             }
         }
     }
-
 }

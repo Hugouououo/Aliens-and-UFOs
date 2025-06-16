@@ -52,8 +52,8 @@ public class RayGunItem extends RangedWeaponItem {
             shooter.getWorld().spawnEntity(laser);
 
             // som
-            float pitch = shooter.getWorld().random.nextFloat() * 0.4F + 1.0F;
-            float volume = 0.75F;
+            float pitch = shooter.getWorld().random.nextFloat() * 0.2F + 1.2F;
+            float volume = 0.50F;
             BlockPos soundPos = shooter.getBlockPos();
 
             shooter.getWorld().playSound(
@@ -72,7 +72,7 @@ public class RayGunItem extends RangedWeaponItem {
         ItemStack itemStack = user.getStackInHand(hand);
 
         if (!user.getItemCooldownManager().isCoolingDown(itemStack)) {
-            user.getItemCooldownManager().set(itemStack, 20); // Cooldown
+            user.getItemCooldownManager().set(itemStack, 0); // Cooldown
             ProjectileEntity dummyProjectile = new LaserProjectileEntity(ModEntities.LASER_PROJECTILE, world);
             shoot(user, dummyProjectile, 0, 3.5f, 0f, user.getYaw(), null);
             return ActionResult.SUCCESS;

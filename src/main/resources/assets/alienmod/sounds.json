@@ -4,5 +4,11 @@
     "sounds": [
       "alienmod:laser_shoot"
     ]
+  },
+  "ray_gun_load": {
+    "subtitle": "sounds.alienmod.ray_gun_load",
+    "sounds": [
+      "alienmod:ray_gun_load"
+    ]
   }
 }

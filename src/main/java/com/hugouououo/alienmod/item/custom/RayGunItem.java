@@ -3,13 +3,17 @@ package com.hugouououo.alienmod.item.custom;
 import com.hugouououo.alienmod.entity.custom.LaserProjectileEntity;
 import com.hugouououo.alienmod.entity.ModEntities;
 import com.hugouououo.alienmod.sound.ModSounds;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ProjectileDeflection;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.RangedWeaponItem;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -40,31 +44,26 @@ public class RayGunItem extends RangedWeaponItem {
     @Override
     protected void shoot(LivingEntity shooter, ProjectileEntity projectile, int index, float speed, float divergence, float yaw, @Nullable LivingEntity target) {
 
-        if (!shooter.getWorld().isClient()) {
-            LaserProjectileEntity laser = new LaserProjectileEntity(ModEntities.LASER_PROJECTILE, shooter.getWorld());
-            Vec3d direction = shooter.getRotationVec(1.0F).normalize();
-            Vec3d spawnPos = shooter.getEyePos().add(direction.multiply(1.0));
-            laser.setPosition(spawnPos.x, spawnPos.y, spawnPos.z);
-            laser.setVelocity(direction.multiply(3.5));
-            laser.setPitch(shooter.getPitch());
-            laser.setYaw(shooter.getYaw());
-            laser.setOwner(shooter);
-            shooter.getWorld().spawnEntity(laser);
+        Vec3d direction = shooter.getRotationVec(1.0F).normalize();
+        projectile.setPosition(
+                shooter.getX() + direction.x,
+                shooter.getEyeY() - 0.1,  // Um pouco abaixo dos olhos pra ficar mais natural
+                shooter.getZ() + direction.z
+        );
+        projectile.setVelocity(direction.x, direction.y, direction.z, 3.5f, 0f);
+        projectile.setOwner(shooter);
+        shooter.getWorld().spawnEntity(projectile);
 
-            // som
-            float pitch = shooter.getWorld().random.nextFloat() * 0.2F + 1.2F;
-            float volume = 0.50F;
-            BlockPos soundPos = shooter.getBlockPos();
+        shooter.getWorld().playSound(
+                null,
+                shooter.getBlockPos(),
+                ModSounds.LASER_SHOOT,
+                SoundCategory.PLAYERS,
+                0.5F,
+                shooter.getWorld().random.nextFloat() * 0.2F + 1.2F
+        );
 
-            shooter.getWorld().playSound(
-                    null,
-                    soundPos,
-                    ModSounds.LASER_SHOOT,
-                    SoundCategory.PLAYERS,
-                    volume,
-                    pitch
-            );
-        }
+
     }
 
     @Override
@@ -72,12 +71,23 @@ public class RayGunItem extends RangedWeaponItem {
         ItemStack itemStack = user.getStackInHand(hand);
 
         if (!user.getItemCooldownManager().isCoolingDown(itemStack)) {
-            user.getItemCooldownManager().set(itemStack, 0); // Cooldown
-            ProjectileEntity dummyProjectile = new LaserProjectileEntity(ModEntities.LASER_PROJECTILE, world);
-            shoot(user, dummyProjectile, 0, 3.5f, 0f, user.getYaw(), null);
+            user.getItemCooldownManager().set(itemStack, 10);
+
+            if (!world.isClient()) {
+                itemStack.damage(5, ((ServerWorld) world), ((ServerPlayerEntity) user),
+                        item -> user.sendEquipmentBreakStatus(item, EquipmentSlot.MAINHAND));
+
+                ProjectileEntity laser = new LaserProjectileEntity(ModEntities.LASER_PROJECTILE, world);
+                shoot(user, laser, 0, 3.5f, 0f, user.getYaw(), null);
+
+            }
             return ActionResult.SUCCESS;
         } else {
-            return ActionResult.FAIL; //se em cooldown
+            return ActionResult.FAIL;
         }
+
+
     }
+
+
 }

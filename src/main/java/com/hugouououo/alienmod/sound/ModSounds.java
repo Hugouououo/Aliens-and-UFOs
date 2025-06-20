@@ -7,6 +7,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
 public class ModSounds {
+
     // Log
     public static void registerSounds(){
         AlienMod.LOGGER.info("Registando sons");
@@ -22,4 +23,6 @@ public class ModSounds {
 
     // Alien carregando a arma
     public static final SoundEvent RAY_GUN_LOAD = registerSoundEvent("ray_gun_load");
+
+
 }

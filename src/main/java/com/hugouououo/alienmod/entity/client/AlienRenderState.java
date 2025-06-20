@@ -21,4 +21,8 @@ public class AlienRenderState extends LivingEntityRenderState {
     public void setAlienEntity(AlienEntity alienEntity) {
         this.alienEntity = alienEntity;
     }
+
+    public void setAttacking(boolean attacking) {
+
+    }
 }

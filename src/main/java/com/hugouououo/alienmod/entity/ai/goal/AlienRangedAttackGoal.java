@@ -29,7 +29,7 @@ public class AlienRangedAttackGoal<T extends HostileEntity & RangedAttackMob> ex
         this.speed = speed;
         this.attackInterval = attackInterval;
         this.squaredRange = range * range;
-        this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
+        this.setControls(EnumSet.of(Control.MOVE, Control.LOOK));
     }
 
     public void setAttackInterval(int attackInterval) {
@@ -53,18 +53,16 @@ public class AlienRangedAttackGoal<T extends HostileEntity & RangedAttackMob> ex
     @Override
     public void start() {
         super.start();
-        this.actor.setAttacking(true);
+        this.actor.setAttacking(true); // Define o estado de ataque como verdadeiro
         this.chargeTicks = 0;
     }
 
     @Override
     public void stop() {
         super.stop();
-        this.actor.setAttacking(false);
-        this.targetSeeingTicker = 0;
-        this.cooldown = -1;
-        this.chargeTicks = 0;
-        this.actor.clearActiveItem();
+        this.actor.setAttacking(false); // Define o estado de ataque como falso
+        // ...
+        this.actor.clearActiveItem(); // Isso pode fazer o item sumir da mão, cuidado se não for o desejado
     }
 
     @Override

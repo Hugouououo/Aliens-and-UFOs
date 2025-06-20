@@ -21,6 +21,7 @@ import net.minecraft.entity.mob.Angerable;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -54,18 +55,17 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
     }
 
     // Objetivos
-    private final AlienRangedAttackGoal<AlienEntity> alienRangedAttackGoal = new AlienRangedAttackGoal<>(this, 1.0, 20, 15.0F);
+    private final AlienRangedAttackGoal<AlienEntity> alienRangedAttackGoal = new AlienRangedAttackGoal<>(this, 1.0, 20, 5.0F);
 
     @Override
     protected void initGoals() {
 
-        //this.goalSelector.add(0, new AlienRangedAttackGoal<>(this, 10, 10, 10));
-        this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.add(2, new LookAroundGoal(this));
-        this.goalSelector.add(3, new WanderAroundFarGoal(this, 1.0, 0.0F));
+        this.goalSelector.add(0, new LookAtEntityGoal(this, PlayerEntity.class, 10.0F));
+        this.goalSelector.add(1, new LookAroundGoal(this));
+        this.goalSelector.add(2, new WanderAroundFarGoal(this, 1.0, 0.0F));
         this.targetSelector.add(0, new RevengeGoal(this).setGroupRevenge());
+        this.targetSelector.add(1, new UniversalAngerGoal<>(this, false));
         //this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
-        this.targetSelector.add(2, new UniversalAngerGoal<>(this, false));
 
         this.updateAttackType();
     }
@@ -83,6 +83,9 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
 
     @Override
     public void shootAt(LivingEntity target, float pullProgress) {
+        if (target == null || !target.isAlive()) {
+            return;
+        }
 
         if (!this.getWorld().isClient()) {
             LaserProjectileEntity laser = new LaserProjectileEntity(ModEntities.LASER_PROJECTILE, this.getWorld());
@@ -108,6 +111,14 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
                     pitch
             );
         }
+    }
+
+    @Override
+    public boolean damage(ServerWorld world, DamageSource source, float amount) {
+        if(source.getAttacker() instanceof AlienEntity){
+            return false;  // aliens NAO tomam DANO de outros aliens
+        }
+        return super.damage(world, source, amount);
     }
 
     @Override
@@ -158,6 +169,16 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
     protected void initDataTracker(DataTracker.Builder builder) {
         super.initDataTracker(builder);
         builder.add(ANGRY, false);
+    }
+
+    // atacando?
+    @Override
+    public void setAttacking(boolean attacking) {
+        super.setAttacking(attacking);
+    }
+    @Override
+    public boolean isAttacking() {
+        return super.isAttacking();
     }
 
     // Metodos do Angerable
@@ -232,5 +253,10 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
                 this.playAngrySound(); //
             }
         }
+
+        if (this.getTarget() != null && !this.getTarget().isAlive()) {
+            this.setTarget(null);
+        }
     }
 }
+

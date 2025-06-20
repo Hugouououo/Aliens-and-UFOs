@@ -11,6 +11,8 @@ import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.entity.player.PlayerEntity;
 
 public class AlienModel extends EntityModel<AlienRenderState> {
 
@@ -68,47 +70,23 @@ public class AlienModel extends EntityModel<AlienRenderState> {
     @Override
     public void setAngles(AlienRenderState renderState) {
         super.setAngles(renderState);
-
-        // Animação de Andar!!!
-        this.animateWalking(AlienAnimations.ALIEN_ANIM_WALK, renderState.limbSwingAnimationProgress, renderState.limbSwingAmplitude, 2f, 2.5f);
-
-        //this.hat.visible = false;
-
         AlienEntity entity = renderState.getAlienEntity();
 
-        float animationProgress = renderState.age + renderState.tickDelta;
+        this.animateWalking(AlienAnimations.ALIEN_ANIM_WALK, renderState.limbSwingAnimationProgress, renderState.limbSwingAmplitude, 2f, 2.5f);
 
-        if (entity.idleAnimationState.isRunning()) {
-            //this.body.roll = 0.05F * MathHelper.sin(animationProgress * 0.1F);
-            this.head.pitch += 0.05F * MathHelper.sin(animationProgress * 0.15F);
-        } else {
-            this.body.roll = 0.0F;
-        }
-
-//        if (renderState.handSwingProgress > 0.0F) {
-//
-//            if (entity.isAttacking() && entity.getMainHandStack().isOf(ModItems.RAY_GUN)) {
-//                float f = renderState.handSwingProgress;
-//                float g = MathHelper.sin(f * (float)Math.PI);
-//                float h = MathHelper.sin((1.0F - (1.0F - f) * (1.0F - f)) * (float)Math.PI);
-//
-//                this.rightArm.roll = 0.0F;
-//                this.leftArm.roll = 0.0F;
-//                this.rightArm.yaw = -(0.1F - g * 0.6F);
-//                this.leftArm.yaw = 0.1F - g * 0.6F;
-//                this.rightArm.pitch = (float) (-Math.PI / 2);
-//                this.leftArm.pitch = (float) (-Math.PI / 2);
-//                this.rightArm.pitch -= g * 1.2F - h * 0.4F;
-//                this.leftArm.pitch -= g * 1.2F - h * 0.4F;
-//                this.hat.yaw = 0f;
-//                this.hat.pitch = 0f;
-//                this.body.yaw = MathHelper.cos(animationProgress * 0.09F) * 0.05F;
-//                this.body.pitch = MathHelper.sin(animationProgress * 0.09F) * 0.05F;
-//            }
+//          IDLE
+//        float animationProgress = renderState.age + renderState.tickDelta;
+//        if (entity.idleAnimationState.isRunning()) {
+//            this.head.pitch += 0.05F * MathHelper.sin(animationProgress * 0.15F);
+//        } else {
+//            this.body.roll = 0.0F;
 //        }
+
         if (entity.isAttacking() && entity.getMainHandStack().isOf(ModItems.RAY_GUN)) {
-            this.rightArm.pitch = -MathHelper.PI / 2;
+
+            this.rightArm.pitch = (float) (-Math.PI / 2.0F);
             this.rightArm.yaw = 0.0F;
+
         }
 
     }

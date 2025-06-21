@@ -7,11 +7,11 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.item.ItemDisplayContext; // Importação CORRETA para ItemDisplayContext
+import net.minecraft.item.ItemDisplayContext;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RotationAxis;
-import net.minecraft.client.model.ModelPart; // Adicionar este import se não estiver presente
+import net.minecraft.client.model.ModelPart;
 
 public class AlienHeldItemFeatureRenderer extends FeatureRenderer<AlienRenderState, AlienModel> {
 
@@ -28,14 +28,14 @@ public class AlienHeldItemFeatureRenderer extends FeatureRenderer<AlienRenderSta
         matrices.push();
         ItemStack itemStack = entity.getMainHandStack();
 
-        if (!itemStack.isEmpty() && entity.isAttacking()) {
+        if (entity.isAttacking()) {
 
             AlienModel model = this.getContextModel();
             ModelPart rightArm = model.rightArm;
             rightArm.applyTransform(matrices);
 
             // posicao
-            matrices.translate(0F, 0.625F, 0.075F);
+            matrices.translate(0.05F, 0.690F, 0.095F);
             // direcao
             matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90.0F));
             matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(0.0F));

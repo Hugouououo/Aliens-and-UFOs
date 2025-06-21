@@ -1,10 +1,9 @@
 package com.hugouououo.alienmod.entity.client;
 
 import com.hugouououo.alienmod.entity.custom.AlienEntity;
-import net.minecraft.client.render.entity.state.BipedEntityRenderState; // Certifique-se deste import
-import net.minecraft.client.render.entity.state.LivingEntityRenderState;
+import net.minecraft.client.render.entity.state.BipedEntityRenderState;
 
-public class AlienRenderState extends LivingEntityRenderState {
+public class AlienRenderState extends BipedEntityRenderState {
 
     private AlienEntity alienEntity;
     public float tickDelta;

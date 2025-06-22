@@ -206,13 +206,12 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
 
     // Sons
     @Override
-    protected SoundEvent getAmbientSound() { return SoundEvents.ENTITY_ENDERMAN_AMBIENT; }
+    protected SoundEvent getAmbientSound() { return ModSounds.ALIEN_IDLE; }
     @Override
-    protected SoundEvent getHurtSound(DamageSource source) { return SoundEvents.ENTITY_ENDERMAN_HURT;}
+    protected SoundEvent getHurtSound(DamageSource source) { return ModSounds.ALIEN_HURT;}
     @Override
-    protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_ENDERMAN_DEATH;
-    }
+    protected SoundEvent getDeathSound() { return ModSounds.ALIEN_DEATH; }
+
     private void playAngrySound() {
         this.getWorld().playSound(
                 null,

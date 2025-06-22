@@ -24,5 +24,9 @@ public class ModSounds {
     // Alien carregando a arma
     public static final SoundEvent RAY_GUN_LOAD = registerSoundEvent("ray_gun_load");
 
+    // Alien normal, machucado, morto
+    public static final SoundEvent ALIEN_HURT = registerSoundEvent("alien.hurt");
+    public static final SoundEvent ALIEN_IDLE = registerSoundEvent("alien.idle");
+    public static final SoundEvent ALIEN_DEATH = registerSoundEvent("alien.death");
 
 }

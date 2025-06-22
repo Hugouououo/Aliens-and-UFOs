@@ -8,7 +8,33 @@
   "ray_gun_load": {
     "subtitle": "sounds.alienmod.ray_gun_load",
     "sounds": [
-      "alienmod:ray_gun_load"
+      "alienmod:alien/ray_gun_load"
+    ]
+  },
+
+  "alien.hurt": {
+    "subtitle": "sounds.alienmod.alien_hurt",
+    "sounds": [
+      "alienmod:alien/hurt1",
+      "alienmod:alien/hurt2",
+      "alienmod:alien/hurt3",
+      "alienmod:alien/hurt4"
+    ]
+  },
+  "alien.idle": {
+    "subtitle": "sounds.alienmod.alien_idle",
+    "sounds": [
+      "alienmod:alien/idle1",
+      "alienmod:alien/idle2",
+      "alienmod:alien/idle3",
+      "alienmod:alien/idle4",
+      "alienmod:alien/idle5"
+    ]
+  },
+  "alien.death": {
+    "subtitle": "sounds.alienmod.alien_idle",
+    "sounds": [
+      "alienmod:alien/death"
     ]
   }
 }

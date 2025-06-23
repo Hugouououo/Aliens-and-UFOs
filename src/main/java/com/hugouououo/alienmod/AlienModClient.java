@@ -16,8 +16,9 @@ public class AlienModClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
 
-        //Transparência no bloco de gosma
+        //Transparência nos blocos
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ALIEN_GOO_BLOCK, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ALIEN_GLASS, RenderLayer.getTranslucent());
 
         // Alien
         EntityModelLayerRegistry.registerModelLayer(AlienModel.ALIEN, AlienModel::getTexturedModelData);

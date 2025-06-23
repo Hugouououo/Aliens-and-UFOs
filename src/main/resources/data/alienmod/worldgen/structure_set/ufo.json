@@ -1,0 +1,17 @@
+{
+  "structures": [
+    {
+      "structure": "alienmod:ufo",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+
+    "salt": 220620251900,
+
+    "spacing": 128,
+
+    "separation": 12
+  }
+}

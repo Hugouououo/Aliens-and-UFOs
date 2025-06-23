@@ -23,12 +23,14 @@ public class ModItemGroups {
                         .entries((displayContext, entries) -> {
                             entries.add(ModItems.ALIEN_DEVICE);
                             entries.add(ModItems.ALIEN_GOO);
-                            entries.add(ModItems.ALIEN_STEEL_INGOT);
+                            //entries.add(ModItems.ALIEN_STEEL_INGOT);
                             entries.add(ModItems.RAY_GUN);
                             entries.add(ModItems.ALIEN_SPAWN_EGG);
                             entries.add(ModBlocks.ALIEN_STEEL);
                             entries.add(ModBlocks.ALIEN_GOO_BLOCK);
                             entries.add(ModBlocks.ALIEN_STEEL_SLAB);
+                            entries.add(ModBlocks.ALIEN_COPPER);
+                            entries.add(ModBlocks.ALIEN_GLASS);
                         })
                         .build()
         );

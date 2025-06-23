@@ -27,18 +27,18 @@ public class ModRecipeProvider extends FabricRecipeProvider {
             public void generate() {
 
                 // STEEL INGOT -> STEEL BLOCK
-                createShaped(RecipeCategory.MISC, ModBlocks.ALIEN_STEEL)
-                        .pattern("II")
-                        .pattern("II")
-                        .input('I', ModItems.ALIEN_STEEL_INGOT)
-                        .criterion(hasItem(ModItems.ALIEN_STEEL_INGOT), conditionsFromItem(ModItems.ALIEN_STEEL_INGOT))
-                        .offerTo(exporter);
+//                createShaped(RecipeCategory.MISC, ModBlocks.ALIEN_STEEL)
+//                        .pattern("II")
+//                        .pattern("II")
+//                        .input('I', ModItems.ALIEN_STEEL_INGOT)
+//                        .criterion(hasItem(ModItems.ALIEN_STEEL_INGOT), conditionsFromItem(ModItems.ALIEN_STEEL_INGOT))
+//                        .offerTo(exporter);
 
                 // STEEL BLOCK -> STEEL INGOT
-                createShapeless(RecipeCategory.MISC, ModItems.ALIEN_STEEL_INGOT,4)
-                        .input(ModBlocks.ALIEN_STEEL)
-                        .criterion(hasItem(ModBlocks.ALIEN_STEEL), conditionsFromItem(ModBlocks.ALIEN_STEEL))
-                        .offerTo(exporter);
+//                createShapeless(RecipeCategory.MISC, ModItems.ALIEN_STEEL_INGOT,4)
+//                        .input(ModBlocks.ALIEN_STEEL)
+//                        .criterion(hasItem(ModBlocks.ALIEN_STEEL), conditionsFromItem(ModBlocks.ALIEN_STEEL))
+//                        .offerTo(exporter);
 
                 // GOO -> GOO BLOCK
                 createShaped(RecipeCategory.MISC, ModBlocks.ALIEN_GOO_BLOCK)

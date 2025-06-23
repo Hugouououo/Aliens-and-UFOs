@@ -26,7 +26,33 @@
               "function": "minecraft:enchanted_count_increase"
             }
           ],
-          "name": "alienmod:alien_goo"
+          "name": "alienmod:alien_goo",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            },
+            {
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase"
+            }
+          ],
+          "name": "alienmod:alien_device",
+          "weight": 1
         }
       ],
       "rolls": 1.0

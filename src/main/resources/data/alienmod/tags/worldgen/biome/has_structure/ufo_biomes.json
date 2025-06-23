@@ -1,0 +1,41 @@
+{
+  "replace": false,
+
+  "values": [
+    "#minecraft:is_jungle",
+    "#minecraft:is_taiga",
+    "#minecraft:is_forest",
+    "minecraft:plains",
+    "minecraft:sunflower_plains",
+    "minecraft:savanna",
+    "minecraft:savanna_plateau",
+    "minecraft:windswept_savanna",
+    "minecraft:desert",
+    "#minecraft:is_end",
+
+    {
+      "id": "#c:is_plains",
+      "required": false
+    },
+    {
+      "id": "#c:is_taiga",
+      "required": false
+    },
+    {
+      "id": "#c:is_jungle",
+      "required": false
+    },
+    {
+      "id": "#c:is_forest",
+      "required": false
+    },
+    {
+      "id": "#c:is_desert",
+      "required": false
+    },
+    {
+      "id": "#c:is_end",
+      "required": false
+    }
+  ]
+}

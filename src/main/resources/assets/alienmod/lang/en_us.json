@@ -2,14 +2,16 @@
   "itemgroup.alienmod.alien": "Alien",
 
   "item.alienmod.alien_goo": "Alien Goo",
-  "item.alienmod.alien_device": "Alien Device",
-  "item.alienmod.alien_steel_ingot": "Alien Steel Ingot",
+  "item.alienmod.alien_device": "Extraterrestrial Device",
+  "item.alienmod.alien_steel_ingot": "Extraterrestrial Steel Ingot",
   "item.alienmod.ray_gun": "Ray Gun",
   "item.alienmod.alien_spawn_egg": "Alien Spawn Egg",
 
   "item.alienmod.alien_goo_block": "Alien Goo Block",
-  "item.alienmod.alien_steel": "Alien Steel",
-  "item.alienmod.alien_steel_slab": "Alien Steel Slab",
+  "item.alienmod.alien_steel": "Extraterrestrial Steel",
+  "item.alienmod.alien_steel_slab": "Extraterrestrial Steel Slab",
+  "item.alienmod.alien_glass": "Extraterrestrial Glass",
+  "item.alienmod.alien_copper": "Extraterrestrial Copper",
 
   "entity.alienmod.alien": "Alien",
 

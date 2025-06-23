@@ -21,7 +21,7 @@ public class ModItems {
     // Ingredientes
     public static final Item ALIEN_GOO = registerItem("alien_goo", Item::new);
     public static final Item ALIEN_DEVICE = registerItem("alien_device", Item::new);
-    public static final Item ALIEN_STEEL_INGOT = registerItem("alien_steel_ingot", Item::new);
+    //public static final Item ALIEN_STEEL_INGOT = registerItem("alien_steel_ingot", Item::new);
 
     // Itens
     public static final Item RAY_GUN = registerItem("ray_gun",
@@ -42,7 +42,7 @@ public class ModItems {
          ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(fabricItemGroupEntries -> {
              fabricItemGroupEntries.add(ALIEN_GOO);
              fabricItemGroupEntries.add(ALIEN_DEVICE);
-             fabricItemGroupEntries.add(ALIEN_STEEL_INGOT);
+             //fabricItemGroupEntries.add(ALIEN_STEEL_INGOT);
          });
 
     }

@@ -9,12 +9,7 @@ import com.hugouououo.alienmod.sound.ModSounds;
 import com.hugouououo.alienmod.world.gen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.sound.SoundEvent; // Importação manual
 
-
-import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,5 +34,8 @@ public class AlienMod implements ModInitializer {
 		ModSounds.registerSounds();
 
 		ModWorldGeneration.generateModWorldGen();
+
+		//ModStructures.registerStructureTypes;
+
 	}
 }

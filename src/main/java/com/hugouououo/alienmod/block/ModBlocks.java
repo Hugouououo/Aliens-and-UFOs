@@ -23,38 +23,28 @@ public class ModBlocks {
     }
 
     private static Block registerBlock(String name, Function<AbstractBlock.Settings, Block> blockFactory, AbstractBlock.Settings settings, boolean shouldRegisterItem) {
-        // Create a registry key for the block
         RegistryKey<Block> blockKey = keyOfBlock(name);
-        // Create the block instance
         Block block = blockFactory.apply(settings.registryKey(blockKey));
-
-        // Sometimes, you may not want to register an item for the block.
-        // Eg: if it's a technical block like `minecraft:moving_piston` or `minecraft:end_gateway`
         if (shouldRegisterItem) {
-            // Items need to be registered with a different type of registry key, but the ID
-            // can be the same.
             RegistryKey<Item> itemKey = keyOfItem(name);
-
             BlockItem blockItem = new BlockItem(block, new Item.Settings().registryKey(itemKey));
             Registry.register(Registries.ITEM, itemKey, blockItem);
         }
-
         return Registry.register(Registries.BLOCK, blockKey, block);
     }
-
     private static RegistryKey<Block> keyOfBlock(String name) {
         return RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(AlienMod.MOD_ID, name));
     }
-
     private static RegistryKey<Item> keyOfItem(String name) {
         return RegistryKey.of(RegistryKeys.ITEM, Identifier.of(AlienMod.MOD_ID, name));
     }
+
 
     public static final Block ALIEN_GOO_BLOCK = registerBlock(
             "alien_goo_block",
             Block::new,
             AbstractBlock.Settings.create()
-                    .sounds(BlockSoundGroup.HONEY)
+                    .sounds(BlockSoundGroup.SLIME)
                     .breakInstantly()
                     .burnable()
                     .nonOpaque()
@@ -64,7 +54,7 @@ public class ModBlocks {
 
     public static final Block ALIEN_STEEL = registerBlock(
             "alien_steel",
-            Block::new,                             // NOVO NA 1.21.4 !!!!!!!!
+            Block::new,
             AbstractBlock.Settings.create()
                     .strength(2f)
                     .requiresTool()
@@ -79,6 +69,26 @@ public class ModBlocks {
                     .strength(2f)
                     .requiresTool()
                     .sounds(BlockSoundGroup.NETHERITE),
+            true
+    );
+
+    public static final Block ALIEN_GLASS = registerBlock(
+            "alien_glass",
+            Block::new,
+            AbstractBlock.Settings.create()
+                    .strength(1f)
+                    .nonOpaque()
+                    .sounds(BlockSoundGroup.GLASS),
+            true
+    );
+
+    public static final Block ALIEN_COPPER = registerBlock(
+            "alien_copper",
+            Block::new,
+            AbstractBlock.Settings.create()
+                    .strength(2f)
+                    .requiresTool()
+                    .sounds(BlockSoundGroup.COPPER),
             true
     );
 }

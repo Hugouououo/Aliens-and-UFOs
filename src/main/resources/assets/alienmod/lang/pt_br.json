@@ -1,15 +1,17 @@
 {
-  "itemgroup.alienmod.alien": "Alien",
+  "itemgroup.alienmod.alien": "Alienígena",
 
   "item.alienmod.alien_goo": "Gosma Alienígena",
-  "item.alienmod.alien_device": "Dispositivo Alienígena",
-  "item.alienmod.alien_steel_ingot": "Barra de Aço Alienígena",
+  "item.alienmod.alien_device": "Dispositivo de Outro Mundo",
+  "item.alienmod.alien_steel_ingot": "Barra de Aço de Outro Mundo",
   "item.alienmod.ray_gun": "Arma Laser",
   "item.alienmod.alien_spawn_egg": "Ovo Gerador de Alienígena",
 
   "item.alienmod.alien_goo_block": "Bloco de Gosma Alienígena",
-  "item.alienmod.alien_steel": "Aço Alienígena",
-  "item.alienmod.alien_steel_slab": "Laje de Aço Alienígena",
+  "item.alienmod.alien_steel": "Aço de Outro Mundo",
+  "item.alienmod.alien_steel_slab": "Laje de Aço de Outro Mundo",
+  "item.alienmod.alien_glass": "Vidro de Outro Mundo",
+  "item.alienmod.alien_copper": "Cobre de Outro Mundo",
 
   "entity.alienmod.alien": "Alienígena",
 
@@ -17,3 +19,4 @@
   "painting.alienmod.believe.author": "Crente Desconhecido"
 
 }
+

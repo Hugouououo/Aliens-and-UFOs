@@ -60,14 +60,19 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
     @Override
     protected void initGoals() {
 
-        this.goalSelector.add(0, new LookAtEntityGoal(this, PlayerEntity.class, 10.0F));
+        this.goalSelector.add(0, new LookAtEntityGoal(this, PlayerEntity.class, 15.0F));
         this.goalSelector.add(1, new LookAroundGoal(this));
         this.goalSelector.add(2, new WanderAroundFarGoal(this, 1.0, 0.0F));
         this.targetSelector.add(0, new RevengeGoal(this).setGroupRevenge());
-        this.targetSelector.add(1, new UniversalAngerGoal<>(this, false));
-        //this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::shouldAngerAt));
+        this.targetSelector.add(2, new UniversalAngerGoal<>(this, true));
 
         this.updateAttackType();
+    }
+
+    @Override
+    public boolean isAngryAt(ServerWorld world, PlayerEntity player) {
+        return this.shouldAngerAt(player, world);
     }
 
     public void updateAttackType() {
@@ -150,6 +155,7 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
                 .add(EntityAttributes.STEP_HEIGHT, 1.0);
     }
 
+
     @Override
     public void setTarget(@Nullable LivingEntity target) {
         if (this.getTarget() == null && target != null) {
@@ -164,6 +170,7 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
             this.dataTracker.set(ANGRY, true);
         }
     }
+
 
     @Override
     protected void initDataTracker(DataTracker.Builder builder) {

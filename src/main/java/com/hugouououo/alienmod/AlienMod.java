@@ -6,6 +6,7 @@ import com.hugouououo.alienmod.entity.custom.AlienEntity;
 import com.hugouououo.alienmod.item.ModItemGroups;
 import com.hugouououo.alienmod.item.ModItems;
 import com.hugouououo.alienmod.sound.ModSounds;
+import com.hugouououo.alienmod.structures.ModStructures;
 import com.hugouououo.alienmod.world.gen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -35,7 +36,7 @@ public class AlienMod implements ModInitializer {
 
 		ModWorldGeneration.generateModWorldGen();
 
-		//ModStructures.registerStructureTypes;
+		ModStructures.registerStructureTypes();
 
 	}
 }

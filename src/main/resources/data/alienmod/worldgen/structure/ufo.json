@@ -1,48 +1,20 @@
 {
-  "type": "minecraft:jigsaw",
-  "biomes": [
-    "minecraft:badlands",
-    "minecraft:bamboo_jungle",
-    "minecraft:birch_forest",
-    "minecraft:cherry_grove",
-    "minecraft:dark_forest",
-    "minecraft:desert",
-    "minecraft:end_highlands",
-    "minecraft:end_midlands",
-    "minecraft:eroded_badlands",
-    "minecraft:flower_forest",
-    "minecraft:forest",
-    "minecraft:grove",
-    "minecraft:jungle",
-    "minecraft:mangrove_swamp",
-    "minecraft:meadow",
-    "minecraft:old_growth_birch_forest",
-    "minecraft:old_growth_pine_taiga",
-    "minecraft:old_growth_spruce_taiga",
-    "minecraft:plains",
-    "minecraft:savanna",
-    "minecraft:savanna_plateau",
-    "minecraft:small_end_islands",
-    "minecraft:sparse_jungle",
-    "minecraft:stony_peaks",
-    "minecraft:jagged_peaks",
-    "minecraft:sunflower_plains",
-    "minecraft:swamp",
-    "minecraft:taiga",
-    "minecraft:windswept_forest",
-    "minecraft:windswept_gravelly_hills",
-    "minecraft:windswept_hills",
-    "minecraft:windswept_savanna",
-    "minecraft:wooded_badlands"
-  ],
+  "type": "alienmod:sky_structures",
+  "biomes": "#alienmod:has_structure/ufo_biomes",
   "step": "surface_structures",
-  "spawn_overrides": {},
+  "spawn_overrides": {
+
+  },
   "start_pool": "alienmod:ufo/start_pool",
   "size": 1,
   "start_height": {
-    "absolute": 100
+    "type": "minecraft:uniform",
+    "min_inclusive": {
+      "absolute": 200
+    },
+    "max_inclusive": {
+      "absolute": 300
+    }
   },
-  "project_start_to_heightmap": "WORLD_SURFACE_WG",
-  "max_distance_from_center": 80,
-  "use_expansion_hack": false
+  "max_distance_from_center": 80
 }

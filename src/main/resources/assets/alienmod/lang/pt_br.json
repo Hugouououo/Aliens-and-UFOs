@@ -15,8 +15,14 @@
 
   "entity.alienmod.alien": "Alienígena",
 
-  "painting.alienmod.believe.title": "Acreditar",
-  "painting.alienmod.believe.author": "Crente Desconhecido"
+  "block.alienmod.alien_chest": "Baú de Outro Mundo",
 
+  "painting.alienmod.believe.title": "Acreditar",
+  "painting.alienmod.believe.author": "Crente Desconhecido",
+
+  "advancements.alienmod.mod_begins.title": "Eu Quero Acreditar",
+  "advancements.alienmod.mod_begins.description": "Fique de olho nos céus!",
+  "advancements.alienmod.enter_ufo.title": "Eles Vêm em Paz",
+  "advancements.alienmod.enter_ufo.description": "Entre em um OVNI pela primeira vez (e talvez a última)."
 }
 

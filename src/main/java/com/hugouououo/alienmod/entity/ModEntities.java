@@ -36,4 +36,5 @@ public class ModEntities {
             Identifier.of(AlienMod.MOD_ID, "laser"),
             EntityType.Builder.<LaserProjectileEntity>create(LaserProjectileEntity::new, SpawnGroup.MISC)
                     .dimensions(0.5f, 0.5f).build(LASER_KEY));
+
 }

@@ -3,14 +3,14 @@
   "pools": [
     {
       "rolls": {
-        "min": 2,
-        "max": 4
+        "min": 4,
+        "max": 8
       },
       "entries": [
         {
           "type": "minecraft:item",
           "name": "alienmod:ray_gun",
-          "weight": 2,
+          "weight": 1,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -25,33 +25,22 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 1
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:ender_pearl",
-          "weight": 14,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
               "count": {
                 "min": 1,
-                "max": 5
+                "max": 2
               }
             }
           ]
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:chorus_fruit",
-          "weight": 10,
+          "name": "minecraft:ender_pearl",
+          "weight": 3,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 3,
+                "min": 1,
                 "max": 7
               }
             }
@@ -59,14 +48,28 @@
         },
         {
           "type": "minecraft:item",
+          "name": "minecraft:chorus_fruit",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3,
+                "max": 9
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:leather",
-          "weight": 20,
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "min": 1,
-                "max": 9
+                "max": 10
               }
             }
           ]
@@ -74,13 +77,13 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:beef",
-          "weight": 20,
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "min": 1,
-                "max": 9
+                "max": 10
               }
             }
           ]
@@ -88,7 +91,7 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:grass_block",
-          "weight": 10,
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -102,99 +105,126 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:oak_sapling",
-          "weight": 10,
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 1
+              "count": {
+                "min": 1,
+                "max": 4
+              }
             }
           ]
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:spruce_sapling",
-          "weight": 10,
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 1
+              "count": {
+                "min": 1,
+                "max": 4
+              }
             }
           ]
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:birch_sapling",
-          "weight": 10,
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 1
+              "count": {
+                "min": 1,
+                "max": 4
+              }
             }
           ]
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:jungle_sapling",
-          "weight": 10,
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 1
+              "count": {
+                "min": 1,
+                "max": 4
+              }
             }
           ]
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:acacia_sapling",
-          "weight": 10,
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 1
+              "count": {
+                "min": 1,
+                "max": 4
+              }
             }
           ]
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:dark_oak_sapling",
-          "weight": 10,
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 1
+              "count": {
+                "min": 1,
+                "max": 4
+              }
             }
           ]
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:mangrove_propagule",
-          "weight": 10,
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 1
+              "count": {
+                "min": 1,
+                "max": 4
+              }
             }
           ]
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:cherry_sapling",
-          "weight": 10,
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 1
+              "count": {
+                "min": 1,
+                "max": 4
+              }
             }
           ]
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:pale_oak_sapling",
-          "weight": 10,
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": 1
+              "count": {
+                "min": 1,
+                "max": 4
+              }
             }
           ]
         }

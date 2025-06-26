@@ -7,10 +7,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.projectile.ProjectileUtil;
-import net.minecraft.item.BowItem;
-import net.minecraft.item.Items;
 
 public class AlienRangedAttackGoal<T extends HostileEntity & RangedAttackMob> extends Goal {
     private final T actor;
@@ -19,10 +15,10 @@ public class AlienRangedAttackGoal<T extends HostileEntity & RangedAttackMob> ex
     private final float squaredRange;
     private int cooldown = -1;
     private int targetSeeingTicker;
-    private boolean movingToLeft;
-    private boolean backward;
-    private int combatTicks = -1;
-    private int chargeTicks; // Adicionada para o atraso antes de atirar
+//    private boolean movingToLeft;
+//    private boolean backward;
+//    private int combatTicks = -1;
+    private int chargeTicks;
 
     public AlienRangedAttackGoal(T actor, double speed, int attackInterval, float range) {
         this.actor = actor;
@@ -32,9 +28,9 @@ public class AlienRangedAttackGoal<T extends HostileEntity & RangedAttackMob> ex
         this.setControls(EnumSet.of(Control.MOVE, Control.LOOK));
     }
 
-    public void setAttackInterval(int attackInterval) {
-        this.attackInterval = attackInterval;
-    }
+//    public void setAttackInterval(int attackInterval) {
+//        this.attackInterval = attackInterval;
+//    }
 
     @Override
     public boolean canStart() {
@@ -53,16 +49,15 @@ public class AlienRangedAttackGoal<T extends HostileEntity & RangedAttackMob> ex
     @Override
     public void start() {
         super.start();
-        this.actor.setAttacking(true); // Define o estado de ataque como verdadeiro
+        this.actor.setAttacking(true);
         this.chargeTicks = 0;
     }
-
     @Override
     public void stop() {
         super.stop();
-        this.actor.setAttacking(false); // Define o estado de ataque como falso
+        this.actor.setAttacking(false);
         // ...
-        this.actor.clearActiveItem(); // Isso pode fazer o item sumir da mão, cuidado se não for o desejado
+        this.actor.clearActiveItem();
     }
 
     @Override
@@ -83,7 +78,7 @@ public class AlienRangedAttackGoal<T extends HostileEntity & RangedAttackMob> ex
                 this.targetSeeingTicker = Math.max(this.targetSeeingTicker - 1, -60);
             }
 
-            if (distance <= this.squaredRange && this.targetSeeingTicker >= 10) {
+            if (distance <= this.squaredRange /*&& this.targetSeeingTicker >= 10*/) {
                 this.actor.getNavigation().stop();
             } else {
                 this.actor.getNavigation().startMovingTo(target, this.speed);
@@ -91,16 +86,21 @@ public class AlienRangedAttackGoal<T extends HostileEntity & RangedAttackMob> ex
 
             this.actor.lookAtEntity(target, 30.0F, 30.0F);
 
-            if (--this.cooldown <= 0 && canSee) {
-                if (this.chargeTicks < 20) { // 20 = 1 segundo
-                    this.chargeTicks++;
-                } else {
-                    this.actor.shootAt(target, 1.0f);
-                    this.cooldown = this.attackInterval;
+            this.cooldown--;
+
+            if (this.cooldown <= 0) { // Se o cooldown terminou
+                if (canSee) { // E o alvo está visível
+                    if (this.chargeTicks < 20) { // Continua carregando
+                        this.chargeTicks++;
+                    } else { // Se carregou, atira
+                        this.actor.shootAt(target, 1.0f);
+                        this.cooldown = this.attackInterval; // Reseta cooldown
+                        this.chargeTicks = 0; // Reseta carregamento
+                    }
+                } else { // Se o alvo não está visível, mas o cooldown já terminou, reseta o carregamento para esperar nova visão
                     this.chargeTicks = 0;
                 }
-            }//else if (!canSee || this.cooldown > 0) {
-            else{
+            } else { // Se o cooldown ainda está ativo, reseta o carregamento para evitar que ele comece a carregar antes do tempo
                 this.chargeTicks = 0;
             }
         }

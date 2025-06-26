@@ -1,5 +1,6 @@
 package com.hugouououo.alienmod.entity.custom;
 
+import com.hugouououo.alienmod.AlienMod;
 import com.hugouououo.alienmod.entity.ModEntities;
 import com.hugouououo.alienmod.entity.ai.goal.AlienRangedAttackGoal;
 import com.hugouououo.alienmod.item.ModItems;
@@ -82,6 +83,7 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
             ItemStack itemStack = this.getMainHandStack();
             if (itemStack.isOf(ModItems.RAY_GUN)) {
                 this.goalSelector.add(0, this.alienRangedAttackGoal);
+//                AlienMod.LOGGER.info("E DEPOIS, PEGOU UMA ARMA PRA REVIDAR!!!!!");
             }
         }
     }
@@ -123,6 +125,9 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
         if(source.getAttacker() instanceof AlienEntity){
             return false;  // aliens NAO tomam DANO de outros aliens
         }
+        //AlienMod.LOGGER.info("ALIEN FOI ATACADO!!!!!!!");
+        //this.goalSelector.add(0, this.alienRangedAttackGoal);
+        //this.updateAttackType();
         return super.damage(world, source, amount);
     }
 
@@ -240,13 +245,28 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
         }
     }
 
+    // isso resolveu o bug de que os que nascem no ovni não atacavam, obrigado gemini
+    public boolean hasRayGunEquipped() {
+        return this.getMainHandStack().isOf(ModItems.RAY_GUN);
+    }
+
     @Override
     public void tick() {
         super.tick();
         if (!this.getWorld().isClient()) {
-            if (!this.getMainHandStack().isOf(ModItems.RAY_GUN)) {
+
+            // Garante que o alien tenha a Ray Gun
+            if (!this.hasRayGunEquipped()) {
                 this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.RAY_GUN));
-                this.updateAttackType();
+            }
+            // Gerencia a meta de ataque à distância:
+            // Se o alien TEM a Ray Gun, garanta que a meta de ataque à distância esteja adicionada.
+            // O goalSelector.add() já lida com duplicatas (não adiciona se já presente na mesma prioridade).
+            if (this.hasRayGunEquipped()) {
+                this.goalSelector.add(0, this.alienRangedAttackGoal);
+            } else {
+                // Se o alien NAO TEM a Ray Gun, garanta que a meta de ataque à distância esteja REMOVIDA.
+                this.goalSelector.remove(this.alienRangedAttackGoal);
             }
         }
         if (this.getWorld().isClient()) {

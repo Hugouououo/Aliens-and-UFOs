@@ -1,10 +1,9 @@
 package com.hugouououo.alienmod.block;
 
 import com.hugouououo.alienmod.AlienMod;
+import com.hugouououo.alienmod.block.custom.AlienChestBlock;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.SlabBlock;
+import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
@@ -56,7 +55,7 @@ public class ModBlocks {
             "alien_steel",
             Block::new,
             AbstractBlock.Settings.create()
-                    .strength(2f)
+                    .strength(4f)
                     .requiresTool()
                     .sounds(BlockSoundGroup.NETHERITE),
             true
@@ -66,7 +65,7 @@ public class ModBlocks {
             "alien_steel_slab",
             SlabBlock::new,
             AbstractBlock.Settings.create()
-                    .strength(2f)
+                    .strength(4f)
                     .requiresTool()
                     .sounds(BlockSoundGroup.NETHERITE),
             true
@@ -86,9 +85,18 @@ public class ModBlocks {
             "alien_copper",
             Block::new,
             AbstractBlock.Settings.create()
-                    .strength(2f)
+                    .strength(4f)
                     .requiresTool()
                     .sounds(BlockSoundGroup.COPPER),
             true
     );
+
+    public static final Block ALIEN_CHEST = registerBlock(
+            "alien_chest",
+            AlienChestBlock::new,
+            AbstractBlock.Settings.create()
+            .strength(2.5f)
+            .nonOpaque()
+            .sounds(BlockSoundGroup.NETHER_WOOD),
+            true);
 }

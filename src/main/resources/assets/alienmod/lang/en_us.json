@@ -15,6 +15,14 @@
 
   "entity.alienmod.alien": "Alien",
 
+  "block.alienmod.alien_chest": "Extraterrestrial Chest",
+
   "painting.alienmod.believe.title": "Believe",
-  "painting.alienmod.believe.author": "Unknown Believer"
+  "painting.alienmod.believe.author": "Unknown Believer",
+
+  "advancements.alienmod.mod_begins.title": "I Want to Believe",
+  "advancements.alienmod.mod_begins.description": "Keep an eye on the sky!",
+  "advancements.alienmod.enter_ufo.title": "They Come In Peace",
+  "advancements.alienmod.enter_ufo.description": "Enter a UFO for the first time (and maybe the last)."
+
 }

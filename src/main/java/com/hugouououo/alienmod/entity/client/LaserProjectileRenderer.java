@@ -7,15 +7,17 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.render.entity.ProjectileEntityRenderer;
 import net.minecraft.client.render.entity.state.EntityRenderState;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import org.joml.Quaternionf;
+import net.minecraft.util.math.RotationAxis;
+import net.minecraft.entity.LivingEntity;
 
-public class LaserProjectileRenderer extends EntityRenderer<LaserProjectileEntity, EntityRenderState> {
+public class LaserProjectileRenderer extends EntityRenderer<LaserProjectileEntity, LaserProjectileRenderState> {
 
     protected LaserProjectileModel model;
     public LaserProjectileRenderer(EntityRendererFactory.Context context) {
@@ -23,36 +25,39 @@ public class LaserProjectileRenderer extends EntityRenderer<LaserProjectileEntit
         this.model = new LaserProjectileModel(context.getPart(LaserProjectileModel.LASER_PROJECTILE));
     }
 
+    protected Identifier getTexture(LaserProjectileRenderState state) {
+        return Identifier.of(AlienMod.MOD_ID, "textures/entity/laser/laser.png");
+    }
+
+    LivingEntity shooter;
+
     @Override
-    public void render(EntityRenderState state, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
-        matrices.push();
+    public void render(LaserProjectileRenderState state, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
+        matrices.push(); // Salva o estado atual da MatrixStack
 
-        // chatgpt
-        Vec3d velocity = state.positionOffset != null ? state.positionOffset : Vec3d.ZERO;
-        float yaw = 0;
-        float pitch = 0;
-        if (velocity.lengthSquared() > 0.0001) {
-            yaw = (float) (Math.atan2(velocity.x, velocity.z) * (180F / Math.PI)) - 90.0f;
-            pitch = (float) (Math.atan2(velocity.y, Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z)) * (180F / Math.PI));
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-state.initialYaw));
+        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(state.initialPitch));
 
-            matrices.multiply(new Quaternionf().rotationY((float) Math.toRadians(yaw)));
-            matrices.multiply(new Quaternionf().rotationZ((float) Math.toRadians(pitch)));
-        }
-        // =-=-=-=
-
-        VertexConsumer vertexconsumer = ItemRenderer.getItemGlintConsumer(vertexConsumers, this.model.getLayer(Identifier.of(AlienMod.MOD_ID, "textures/entity/laser/laser.png")), false, false);
+        VertexConsumer vertexconsumer = ItemRenderer.getItemGlintConsumer(vertexConsumers, this.model.getLayer(this.getTexture(this.createRenderState())), true, false);
         this.model.render(matrices, vertexconsumer, light, OverlayTexture.DEFAULT_UV);
+
         matrices.pop();
-        super.render(state, matrices, vertexConsumers, light);
+    }
+
+    @Override
+    public void updateRenderState(LaserProjectileEntity entity, LaserProjectileRenderState state, float tickProgress) {
+        super.updateRenderState(entity, state, tickProgress);
+        state.initialYaw = entity.getInitialYaw();
+        state.initialPitch = entity.getInitialPitch();
+    }
+
+    @Override
+    public LaserProjectileRenderState createRenderState() {
+        return new LaserProjectileRenderState();
     }
 
     protected int getBlockLight(LaserProjectileEntity laserProjectileEntity, BlockPos blockPos) {
         return 15;
-    }
-
-    @Override
-    public EntityRenderState createRenderState() {
-        return new EntityRenderState();
     }
 }
 

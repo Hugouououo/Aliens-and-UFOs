@@ -6,8 +6,13 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.hit.BlockHitResult;
@@ -23,42 +28,32 @@ public class LaserProjectileEntity extends ProjectileEntity {
         this.setNoGravity(true);
     }
 
+    public static final TrackedData<Float> INITIAL_YAW = DataTracker.registerData(LaserProjectileEntity.class, TrackedDataHandlerRegistry.FLOAT);
+    public static final TrackedData<Float> INITIAL_PITCH = DataTracker.registerData(LaserProjectileEntity.class, TrackedDataHandlerRegistry.FLOAT);
+
+    public void setInitialRotation(float pitch, float yaw) {
+        this.dataTracker.set(INITIAL_PITCH, pitch);
+        this.dataTracker.set(INITIAL_YAW, yaw);
+    }
+    public float getInitialYaw() {
+        return this.dataTracker.get(INITIAL_YAW);
+    }
+    public float getInitialPitch() {
+        return this.dataTracker.get(INITIAL_PITCH);
+    }
+
     @Override
     public void tick() {
         super.tick();
 
         Vec3d velocity = this.getVelocity();
-        if (!velocity.equals(Vec3d.ZERO)) {
-            float yaw = (float)(Math.toDegrees(Math.atan2(velocity.z, velocity.x)) - 90.0);
-            float pitch = (float)(-Math.toDegrees(Math.atan2(velocity.y, Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z))));
-            this.setYaw(yaw);
-            this.setPitch(pitch);
-        }
+        Vec3d currentPos = this.getPos();
+        Vec3d nextPos = currentPos.add(velocity);
 
-        double stepSize = 0.5;
-        double distance = velocity.length();
-        int steps = (int) Math.ceil(distance / stepSize);
-
-        Vec3d step = velocity.multiply(1.0 / steps);
-
-        for (int i = 0; i < steps; i++) {
-            Vec3d currentPos = this.getPos();
-            Vec3d nextPos = currentPos.add(step);
-
-            HitResult hitResult = ProjectileUtil.raycast(
-                    this,
-                    currentPos,
-                    nextPos,
-                    this.getBoundingBox().stretch(step).expand(0.2),
-                    this::canHit,
-                    1.0
-            );
-
-            if (hitResult != null && hitResult.getType() != HitResult.Type.MISS) {
-                this.onCollision(hitResult);
-                return; // encerra o tick após colisão
-            }
-
+        HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
+        if (hitResult.getType() != HitResult.Type.MISS) {
+            this.onCollision(hitResult);
+        } else {
             this.setPosition(nextPos.x, nextPos.y, nextPos.z);
         }
     }
@@ -73,7 +68,7 @@ public class LaserProjectileEntity extends ProjectileEntity {
             entity.damage(serverWorld, source, 6.0F);
 
             Vec3d hitPos = entityHitResult.getPos();
-            serverWorld.spawnParticles(ParticleTypes.LAVA, hitPos.x, hitPos.y, hitPos.z, 3, 0.05, 0.05, 0.05, 0.0);
+            serverWorld.spawnParticles(ParticleTypes.LAVA, hitPos.x, hitPos.y, hitPos.z, 3, 0.025, 0.025, 0.025, 0.0);
         }
         this.discard();
     }
@@ -81,19 +76,21 @@ public class LaserProjectileEntity extends ProjectileEntity {
     @Override
     protected void onBlockHit(BlockHitResult blockHitResult) {
         if (this.getWorld() instanceof ServerWorld serverWorld) {
-            Vec3d hitPos = blockHitResult.getBlockPos().toCenterPos().normalize();
-            serverWorld.spawnParticles(ParticleTypes.LAVA, hitPos.x, hitPos.y, hitPos.z, 15, 0.1, 0.1, 0.1, 0.01);
+            Vec3d hitPos = blockHitResult.getBlockPos().toCenterPos();
+            serverWorld.spawnParticles(ParticleTypes.SMOKE, hitPos.x, hitPos.y, hitPos.z, 10, 0.1, 0.1, 0.1, 0.1);
         }
         this.discard();
     }
 
-
     @Override
     public boolean canHit() {
-        //return !this.isRemoved();
-        return true;
+        return !this.isRemoved();
+        //return true;
     }
 
     @Override
-    protected void initDataTracker(DataTracker.Builder builder) {}
+    protected void initDataTracker(DataTracker.Builder builder) {
+        builder.add(INITIAL_YAW, 0.0F);
+        builder.add(INITIAL_PITCH, 0.0F);
+    }
 }

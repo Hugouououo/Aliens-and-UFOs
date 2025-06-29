@@ -44,13 +44,26 @@ public class RayGunItem extends RangedWeaponItem {
     @Override
     protected void shoot(LivingEntity shooter, ProjectileEntity projectile, int index, float speed, float divergence, float yaw, @Nullable LivingEntity target) {
 
-        Vec3d direction = shooter.getRotationVec(1.0F).normalize();
-        projectile.setPosition(
-                shooter.getX() + direction.x,
-                shooter.getEyeY() - 0.1,  // Um pouco abaixo dos olhos pra ficar mais natural
-                shooter.getZ() + direction.z
-        );
-        projectile.setVelocity(direction.x, direction.y, direction.z, 3.5f, 0f);
+//        Vec3d direction = shooter.getRotationVec(1.0F).normalize();
+//        projectile.setPosition(
+//                shooter.getX() + direction.x,
+//                shooter.getEyeY() - 0.1,  // Um pouco abaixo dos olhos pra ficar mais natural
+//                shooter.getZ() + direction.z
+//        );
+//
+//        projectile.setVelocity(direction.x, direction.y, direction.z, 3.5f, 0f);
+//        projectile.setOwner(shooter);
+//
+        projectile.setVelocity(shooter, shooter.getPitch(), shooter.getYaw(), 0.0F, speed, divergence);
+
+        if (projectile instanceof LaserProjectileEntity laserProjectile) {
+            laserProjectile.setInitialRotation(shooter.getPitch(), shooter.getYaw());
+        }
+
+        Vec3d eyePos = shooter.getEyePos();
+        Vec3d lookVec = shooter.getRotationVec(1.0F).normalize();
+        projectile.setPosition(eyePos.x + lookVec.x * 0.1, eyePos.y - 0.1, eyePos.z + lookVec.z * 0.1);
+
         projectile.setOwner(shooter);
         shooter.getWorld().spawnEntity(projectile);
 
@@ -62,8 +75,6 @@ public class RayGunItem extends RangedWeaponItem {
                 0.5F,
                 shooter.getWorld().random.nextFloat() * 0.2F + 1.2F
         );
-
-
     }
 
     @Override
@@ -71,7 +82,7 @@ public class RayGunItem extends RangedWeaponItem {
         ItemStack itemStack = user.getStackInHand(hand);
 
         if (!user.getItemCooldownManager().isCoolingDown(itemStack)) {
-            user.getItemCooldownManager().set(itemStack, 10);
+            user.getItemCooldownManager().set(itemStack, 0);
 
             if (!world.isClient()) {
                 itemStack.damage(5, ((ServerWorld) world), ((ServerPlayerEntity) user),

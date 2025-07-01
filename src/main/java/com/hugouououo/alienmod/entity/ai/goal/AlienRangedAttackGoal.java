@@ -84,7 +84,7 @@ public class AlienRangedAttackGoal<T extends HostileEntity & RangedAttackMob> ex
                 this.actor.getNavigation().startMovingTo(target, this.speed);
             }
 
-            this.actor.lookAtEntity(target, 30.0F, 30.0F);
+            this.actor.lookAtEntity(target, 180.0F, 180.0F);
 
             this.cooldown--;
 

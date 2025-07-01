@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.RangedWeaponItem;
+import net.minecraft.item.consume.UseAction;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -44,16 +45,6 @@ public class RayGunItem extends RangedWeaponItem {
     @Override
     protected void shoot(LivingEntity shooter, ProjectileEntity projectile, int index, float speed, float divergence, float yaw, @Nullable LivingEntity target) {
 
-//        Vec3d direction = shooter.getRotationVec(1.0F).normalize();
-//        projectile.setPosition(
-//                shooter.getX() + direction.x,
-//                shooter.getEyeY() - 0.1,  // Um pouco abaixo dos olhos pra ficar mais natural
-//                shooter.getZ() + direction.z
-//        );
-//
-//        projectile.setVelocity(direction.x, direction.y, direction.z, 3.5f, 0f);
-//        projectile.setOwner(shooter);
-//
         projectile.setVelocity(shooter, shooter.getPitch(), shooter.getYaw(), 0.0F, speed, divergence);
 
         if (projectile instanceof LaserProjectileEntity laserProjectile) {
@@ -62,7 +53,7 @@ public class RayGunItem extends RangedWeaponItem {
 
         Vec3d eyePos = shooter.getEyePos();
         Vec3d lookVec = shooter.getRotationVec(1.0F).normalize();
-        projectile.setPosition(eyePos.x + lookVec.x * 0.1, eyePos.y - 0.1, eyePos.z + lookVec.z * 0.1);
+        projectile.setPosition(eyePos.x + lookVec.x * 0.1, eyePos.y - 0.2, eyePos.z + lookVec.z * 0.1);
 
         projectile.setOwner(shooter);
         shooter.getWorld().spawnEntity(projectile);
@@ -82,7 +73,7 @@ public class RayGunItem extends RangedWeaponItem {
         ItemStack itemStack = user.getStackInHand(hand);
 
         if (!user.getItemCooldownManager().isCoolingDown(itemStack)) {
-            user.getItemCooldownManager().set(itemStack, 0);
+            user.getItemCooldownManager().set(itemStack, 15); // cooldown
 
             if (!world.isClient()) {
                 itemStack.damage(5, ((ServerWorld) world), ((ServerPlayerEntity) user),
@@ -96,9 +87,11 @@ public class RayGunItem extends RangedWeaponItem {
         } else {
             return ActionResult.FAIL;
         }
-
-
     }
 
+    @Override
+    public UseAction getUseAction(ItemStack stack) {
+        return UseAction.CROSSBOW;
+    }
 
 }

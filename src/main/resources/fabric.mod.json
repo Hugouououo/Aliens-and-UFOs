@@ -2,14 +2,14 @@
 	"schemaVersion": 1,
 	"id": "alienmod",
 	"version": "${version}",
-	"name": "Tutorial Mod Primeiro mod",
-	"description": "OII MEU PROMEIRO MOD NO JAVA",
+	"name": "Aliens & UFOs",
+	"description": "A mod that adds Aliens, their spaceships and much more!",
 	"authors": [
 		"Hugouououo"
 	],
 	"contact": {
-		"homepage": "https://github.com/Hugouououo/Aliens-and-UFOs",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/aliens-and-ufos",
+		"sources": "https://github.com/Hugouououo/Aliens-and-UFOs"
 	},
 	"license": "MIT",
 	"icon": "assets/alienmod/icon.png",
@@ -23,6 +23,9 @@
 		],
 		"client": [
 			"com.hugouououo.alienmod.AlienModClient"
+		],
+		"rei_client": [
+			"com.hugouououo.alienmod.compat.AlienModREIClient"
 		]
 	},
 	"mixins": [
@@ -35,6 +38,7 @@
 		"fabric-api": "*"
 	},
 	"suggests": {
+		"roughlyenoughitems": "*",
 		"another-mod": "*"
 	}
 }

@@ -23,9 +23,6 @@
 		],
 		"client": [
 			"com.hugouououo.alienmod.AlienModClient"
-		],
-		"rei_client": [
-			"com.hugouououo.alienmod.compat.AlienModREIClient"
 		]
 	},
 	"mixins": [

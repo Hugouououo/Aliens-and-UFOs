@@ -16,15 +16,15 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
 
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+        valueLookupBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(ModBlocks.ALIEN_STEEL)
                 .add(ModBlocks.ALIEN_STEEL_SLAB);
 
-        getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
+        valueLookupBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.ALIEN_STEEL)
                 .add(ModBlocks.ALIEN_STEEL_SLAB);
 
-        getOrCreateTagBuilder(BlockTags.SLABS)
+        valueLookupBuilder(BlockTags.SLABS)
                 .add(ModBlocks.ALIEN_STEEL_SLAB);
     }
 }

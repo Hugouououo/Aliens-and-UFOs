@@ -16,5 +16,4 @@ public class AlienChestModelRenderer extends ChestModelRenderer {
         super(model, textureId, openness);
     }
 
-    // Você pode adicionar overrides se quiser alterar comportamento específico
 }

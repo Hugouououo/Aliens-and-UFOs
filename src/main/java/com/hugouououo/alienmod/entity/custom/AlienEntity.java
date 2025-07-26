@@ -72,8 +72,8 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
     }
 
     @Override
-    public boolean isAngryAt(ServerWorld world, PlayerEntity player) {
-        return this.shouldAngerAt(player, world);
+    public boolean isAngryAt(PlayerEntity player) {
+        return this.shouldAngerAt(player);
     }
 
     public void updateAttackType() {
@@ -121,14 +121,14 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
     }
 
     @Override
-    public boolean damage(ServerWorld world, DamageSource source, float amount) {
+    public boolean damage(DamageSource source, float amount) {
         if(source.getAttacker() instanceof AlienEntity){
             return false;  // aliens NAO tomam DANO de outros aliens
         }
         //AlienMod.LOGGER.info("ALIEN FOI ATACADO!!!!!!!");
         //this.goalSelector.add(0, this.alienRangedAttackGoal);
         //this.updateAttackType();
-        return super.damage(world, source, amount);
+        return super.damage(source, amount);
     }
 
     @Override
@@ -153,11 +153,11 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
     // Atributos
     public static DefaultAttributeContainer.Builder createAttributes() {
         return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.MAX_HEALTH, 8.0)
-                .add(EntityAttributes.MOVEMENT_SPEED, 0.3F)
-                .add(EntityAttributes.ATTACK_DAMAGE, 3.0)
-                .add(EntityAttributes.FOLLOW_RANGE, 32.0)
-                .add(EntityAttributes.STEP_HEIGHT, 1.0);
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 8.0)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3F)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0)
+                .add(EntityAttributes.GENERIC_STEP_HEIGHT, 1.0);
     }
 
 

@@ -7,17 +7,16 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.ProjectileEntityRenderer;
-import net.minecraft.client.render.entity.state.EntityRenderState;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.RotationAxis;
 import net.minecraft.entity.LivingEntity;
 
-public class LaserProjectileRenderer extends EntityRenderer<LaserProjectileEntity, LaserProjectileRenderState> {
+public class LaserProjectileRenderer extends EntityRenderer<LaserProjectileEntity> {
 
     protected LaserProjectileModel model;
     public LaserProjectileRenderer(EntityRendererFactory.Context context) {
@@ -25,35 +24,21 @@ public class LaserProjectileRenderer extends EntityRenderer<LaserProjectileEntit
         this.model = new LaserProjectileModel(context.getPart(LaserProjectileModel.LASER_PROJECTILE));
     }
 
-    protected Identifier getTexture(LaserProjectileRenderState state) {
+    public Identifier getTexture(LaserProjectileEntity entity) {
         return Identifier.of(AlienMod.MOD_ID, "textures/entity/laser/laser.png");
     }
 
-    LivingEntity shooter;
-
     @Override
-    public void render(LaserProjectileRenderState state, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
+    public void render(LaserProjectileEntity entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
         matrices.push(); // Salva o estado atual da MatrixStack
 
-        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-state.initialYaw));
-        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(state.initialPitch));
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-entity.getInitialYaw()));
+        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(entity.getInitialPitch()));
 
-        VertexConsumer vertexconsumer = ItemRenderer.getItemGlintConsumer(vertexConsumers, this.model.getLayer(this.getTexture(this.createRenderState())), true, false);
+        VertexConsumer vertexconsumer = ItemRenderer.getItemGlintConsumer(vertexConsumers, this.model.getLayer(this.getTexture(entity)), true, false);
         this.model.render(matrices, vertexconsumer, light, OverlayTexture.DEFAULT_UV);
 
         matrices.pop();
-    }
-
-    @Override
-    public void updateRenderState(LaserProjectileEntity entity, LaserProjectileRenderState state, float tickProgress) {
-        super.updateRenderState(entity, state, tickProgress);
-        state.initialYaw = entity.getInitialYaw();
-        state.initialPitch = entity.getInitialPitch();
-    }
-
-    @Override
-    public LaserProjectileRenderState createRenderState() {
-        return new LaserProjectileRenderState();
     }
 
     protected int getBlockLight(LaserProjectileEntity laserProjectileEntity, BlockPos blockPos) {

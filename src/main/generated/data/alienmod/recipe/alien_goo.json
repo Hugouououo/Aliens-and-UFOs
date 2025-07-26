@@ -2,7 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "alienmod:alien_goo_block"
+    {
+      "item": "alienmod:alien_goo_block"
+    }
   ],
   "result": {
     "count": 4,

@@ -5,20 +5,18 @@ import com.hugouououo.alienmod.entity.ModEntities;
 import com.hugouououo.alienmod.sound.ModSounds;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ProjectileDeflection;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.RangedWeaponItem;
-import net.minecraft.item.consume.UseAction;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.UseAction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -69,11 +67,11 @@ public class RayGunItem extends RangedWeaponItem {
     }
 
     @Override
-    public ActionResult use(World world, PlayerEntity user, Hand hand) {
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
 
-        if (!user.getItemCooldownManager().isCoolingDown(itemStack)) {
-            user.getItemCooldownManager().set(itemStack, 15); // cooldown
+        if (!user.getItemCooldownManager().isCoolingDown(itemStack.getItem())) {
+            user.getItemCooldownManager().set(itemStack.getItem(), 15); // cooldown
 
             if (!world.isClient()) {
                 itemStack.damage(5, ((ServerWorld) world), ((ServerPlayerEntity) user),
@@ -83,11 +81,12 @@ public class RayGunItem extends RangedWeaponItem {
                 shoot(user, laser, 0, 3.5f, 0f, user.getYaw(), null);
 
             }
-            return ActionResult.SUCCESS;
+            return TypedActionResult.success(itemStack);
         } else {
-            return ActionResult.FAIL;
+            return TypedActionResult.fail(itemStack);
         }
     }
+
 
     @Override
     public UseAction getUseAction(ItemStack stack) {

@@ -7,11 +7,11 @@
   "item.alienmod.ray_gun": "Arma Laser",
   "item.alienmod.alien_spawn_egg": "Ovo Gerador de Alienígena",
 
-  "item.alienmod.alien_goo_block": "Bloco de Gosma Alienígena",
-  "item.alienmod.alien_steel": "Aço de Outro Mundo",
-  "item.alienmod.alien_steel_slab": "Laje de Aço de Outro Mundo",
-  "item.alienmod.alien_glass": "Vidro de Outro Mundo",
-  "item.alienmod.alien_copper": "Cobre de Outro Mundo",
+  "block.alienmod.alien_goo_block": "Bloco de Gosma Alienígena",
+  "block.alienmod.alien_steel": "Aço de Outro Mundo",
+  "block.alienmod.alien_steel_slab": "Laje de Aço de Outro Mundo",
+  "block.alienmod.alien_glass": "Vidro de Outro Mundo",
+  "block.alienmod.alien_copper": "Cobre de Outro Mundo",
 
   "entity.alienmod.alien": "Alienígena",
 

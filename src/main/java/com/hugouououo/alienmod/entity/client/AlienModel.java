@@ -4,15 +4,14 @@ import com.hugouououo.alienmod.AlienMod;
 import com.hugouououo.alienmod.entity.custom.AlienEntity;
 import com.hugouououo.alienmod.item.ModItems;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.render.entity.model.EntityModelPartNames;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
-import java.util.function.Function;
-
-public class AlienModel extends BipedEntityModel<AlienRenderState> {
+public class AlienModel extends BipedEntityModel<AlienEntity> {
 
     public static final EntityModelLayer ALIEN = new EntityModelLayer(Identifier.of(AlienMod.MOD_ID,"alien"), "main");
 
@@ -23,11 +22,11 @@ public class AlienModel extends BipedEntityModel<AlienRenderState> {
     public final ModelPart rightLeg;
     public final ModelPart leftLeg;
     public final ModelPart hat;
-    
+
     public AlienModel(ModelPart modelPart) {
         super(modelPart);
         this.head = modelPart.getChild(EntityModelPartNames.HEAD);
-        this.hat = this.head.getChild(EntityModelPartNames.HAT);
+        this.hat = modelPart.getChild(EntityModelPartNames.HAT);
         this.body = modelPart.getChild(EntityModelPartNames.BODY);
         this.rightArm = modelPart.getChild(EntityModelPartNames.RIGHT_ARM);
         this.leftArm = modelPart.getChild(EntityModelPartNames.LEFT_ARM);
@@ -36,106 +35,66 @@ public class AlienModel extends BipedEntityModel<AlienRenderState> {
     }
 
     public static TexturedModelData getTexturedModelData() {
-
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
 
-        ModelPartData modelPartData2 = modelPartData.addChild(
-                EntityModelPartNames.HEAD, ModelPartBuilder
-                .create()
-                .uv(0, 0)
-                .cuboid(-4.0F, -7.0F, -5.0F, 8.0F, 8.0F, 8.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 5.0F, 1.0F));
+        modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder
+                        .create()
+                        .uv(0, 0)
+                        .cuboid(-4.0F, -2F, -4.0F, 8.0F, 8.0F, 8.0F), // Mesmo cubo
+                ModelTransform.pivot(0.0F, 2.0F, 0.0F)); // Mesmo pivot do Blockbench
 
-        modelPartData2.addChild(EntityModelPartNames.HAT, ModelPartBuilder.create(), ModelTransform.NONE);
-
-        modelPartData.addChild(EntityModelPartNames.RIGHT_LEG, ModelPartBuilder
-            .create()
-            .uv(18, 28)
-            .cuboid(0.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(-3.0F, 16.0F, 0.0f));
-
-        modelPartData.addChild(EntityModelPartNames.LEFT_LEG, ModelPartBuilder
-                .create()
-                .uv(26, 28)
-                .cuboid(-2.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(3.0F, 16.0F, 0.0F));
-
-        modelPartData.addChild(EntityModelPartNames.RIGHT_ARM, ModelPartBuilder
-                .create()
-                .uv(18, 16)
-                .cuboid(0.0F, 0.5F, -1.0F, 2.0F, 10.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(-5.0F, 5.5F, 0.0f));
-
-        modelPartData.addChild(EntityModelPartNames.LEFT_ARM, ModelPartBuilder
-                .create()
-                .uv(26, 16)
-                .cuboid(-2.0F, 0.5F, -1.0F, 2.0F, 10.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(5.0F, 5.5F, 0.0F));
+        modelPartData.addChild(EntityModelPartNames.HAT, ModelPartBuilder.create(), ModelTransform.NONE);
 
         modelPartData.addChild(EntityModelPartNames.BODY, ModelPartBuilder
-                .create()
-                .uv(0, 16)
-                .cuboid(-3.0F, -18.0F, -1.5F, 6.0F, 10.0F, 3.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
+                        .create()
+                        .uv(0, 16)
+                        .cuboid(-3.0F, 6F, -1.5F, 6.0F, 10.0F, 3.0F), // Cubo centralizado
+                ModelTransform.pivot(0.0F, 11.0F, 0.0F)); // Igual ao Blockbench
+
+        modelPartData.addChild(EntityModelPartNames.RIGHT_ARM, ModelPartBuilder
+                        .create()
+                        .uv(18, 16)
+                        .cuboid(-1.0F, 4.0F, -1.0F, 2.0F, 10.0F, 2.0F),
+                ModelTransform.pivot(-4.0F, 5.0F, 0.0F)); // Braço direito
+
+        modelPartData.addChild(EntityModelPartNames.LEFT_ARM, ModelPartBuilder
+                        .create()
+                        .uv(26, 16)
+                        .cuboid(-1.0F, 4.0F, -1.0F, 2.0F, 10.0F, 2.0F),
+                ModelTransform.pivot(4.0F, 5.0F, 0.0F)); // Braço esquerdo
+
+        modelPartData.addChild(EntityModelPartNames.RIGHT_LEG, ModelPartBuilder
+                        .create()
+                        .uv(18, 28)
+                        .cuboid(-1.0F, 4.0F, -1.0F, 2.0F, 8.0F, 2.0F),
+                ModelTransform.pivot(-2.0F, 16.0F, 0.0F)); // Perna direita
+
+        modelPartData.addChild(EntityModelPartNames.LEFT_LEG, ModelPartBuilder
+                        .create()
+                        .uv(26, 28)
+                        .cuboid(-1.0F, 4.0F, -1.0F, 2.0F, 8.0F, 2.0F),
+                ModelTransform.pivot(2.0F, 16.0F, 0.0F)); // Perna esquerda
 
         return TexturedModelData.of(modelData, 64, 64);
     }
 
-    @Override
-    public void setAngles(AlienRenderState renderState) {
-        super.setAngles(renderState);
-        AlienEntity entity = renderState.getAlienEntity();
 
-        // Levanta a arma se atacando
-        if (entity.isAttacking() && entity.getMainHandStack().isOf(ModItems.RAY_GUN)) {
-            this.rightArm.pitch = (float) (-Math.PI / 2.0F);
-            this.rightArm.yaw = 0.0F;
+    @Override
+    public void setAngles(AlienEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        super.setAngles(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+
+        if (entity instanceof AlienEntity alienEntity) { // Use pattern matching para cast seguro
+            // Levanta a arma se atacando
+            if (alienEntity.isAttacking() && alienEntity.getMainHandStack().isOf(ModItems.RAY_GUN)) {
+                this.rightArm.pitch = (float) (-Math.PI / 2.0F);
+                this.rightArm.yaw = 0.0F; // ou ajuste conforme necessário
+            }
         }
     }
-}
 
-//    public AlienModel(ModelPart root) {
-//        super(root, RenderLayer::getEntityCutoutNoCull);
-//        this.rightLeg = root.getChild("rightLeg");
-//        this.leftLeg = root.getChild("leftLeg");
-//        this.rightArm = root.getChild("rightArm");
-//        this.leftArm = root.getChild("leftArm");
-//        this.body = root.getChild("body");
-//        this.head = root.getChild("head");
-//        this.hat = root.getChild("hat");
-//    }
-//public static TexturedModelData getTexturedModelData() {
-//
-//    ModelData modelData = new ModelData();
-//    ModelPartData modelPartData = modelData.getRoot();
-//
-//    ModelPartData rightLeg = modelPartData.addChild("rightLeg", ModelPartBuilder
-//            .create()
-//            .uv(18, 28)
-//            .cuboid(0.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(-3.0F, 16.0F, 0.0f);
-//
-//    ModelPartData leftLeg = modelPartData.addChild("leftLeg", ModelPartBuilder
-//            .create()
-//            .uv(26, 28)
-//            .cuboid(-2.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(3.0F, 16.0F, 0.0F));
-//
-//    ModelPartData rightArm = modelPartData.addChild("rightArm", ModelPartBuilder
-//            .create()
-//            .uv(18, 16)
-//            .cuboid(0.0F, 0.5F, -1.0F, 2.0F, 10.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(-5.0F, 5.5F, 0.0f));
-//
-//    ModelPartData leftArm = modelPartData.addChild("leftArm", ModelPartBuilder
-//            .create()
-//            .uv(26, 16)
-//            .cuboid(-2.0F, 0.5F, -1.0F, 2.0F, 10.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(5.0F, 5.5F, 0.0F));
-//
-//    ModelPartData body = modelPartData.addChild("body", ModelPartBuilder
-//            .create()
-//            .uv(0, 16)
-//            .cuboid(-3.0F, -18.0F, -1.5F, 6.0F, 10.0F, 3.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
-//
-//    ModelPartData head = modelPartData.addChild("head", ModelPartBuilder
-//            .create()
-//            .uv(0, 0)
-//            .cuboid(-4.0F, -7.0F, -5.0F, 8.0F, 8.0F, 8.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 5.0F, 1.0F));
-//
-//    ModelPartData hat = modelPartData.addChild("hat", ModelPartBuilder.create(), ModelTransform.NONE);
-//
-//    return TexturedModelData.of(modelData, 64, 64);
-//
-//}
+    @Override
+    public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
+        super.render(matrices, vertices, light, overlay, color);
+    }
+}

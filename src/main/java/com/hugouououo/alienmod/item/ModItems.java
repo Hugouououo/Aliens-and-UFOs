@@ -17,33 +17,35 @@ import net.minecraft.util.Identifier;
 import java.util.function.Function;
 
 public class ModItems {
+    // REGISTRADORES
+    public static void registerModItems() {
+        AlienMod.LOGGER.info("Registrando itens do Mod para " + AlienMod.MOD_ID);
+
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(fabricItemGroupEntries -> {
+
+            fabricItemGroupEntries.add(ALIEN_GOO);
+            fabricItemGroupEntries.add(ALIEN_DEVICE);
+            //fabricItemGroupEntries.add(ALIEN_STEEL_INGOT);
+
+        });
+    }
+//    private static Item registerItem(String name, Function<Item.Settings, Item> function) {
+//        return Registry.register(Registries.ITEM, Identifier.of(AlienMod.MOD_ID, name),
+//                function.apply(new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(AlienMod.MOD_ID, name)))));
+//    }
+    private static Item registerItem(String name, Item item) {
+        return Registry.register(Registries.ITEM, Identifier.of(AlienMod.MOD_ID, name), item);
+    }
 
     // Ingredientes
-    public static final Item ALIEN_GOO = registerItem("alien_goo", Item::new);
-    public static final Item ALIEN_DEVICE = registerItem("alien_device", Item::new);
+    public static final Item ALIEN_GOO = registerItem("alien_goo", new Item(new Item.Settings()));
+    public static final Item ALIEN_DEVICE = registerItem("alien_device", new Item(new Item.Settings()));
     //public static final Item ALIEN_STEEL_INGOT = registerItem("alien_steel_ingot", Item::new);
 
     // Itens
     public static final Item RAY_GUN = registerItem("ray_gun",
-        setting -> new RayGunItem(setting.maxDamage(500)));
+        new RayGunItem(new Item.Settings()));
 
     public static final Item ALIEN_SPAWN_EGG = registerItem("alien_spawn_egg",
-            setting -> new SpawnEggItem(ModEntities.ALIEN, setting));
-
-
-    // REGISTRADORES
-    private static Item registerItem(String name, Function<Item.Settings, Item> function) {
-        return Registry.register(Registries.ITEM, Identifier.of(AlienMod.MOD_ID, name),
-                function.apply(new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(AlienMod.MOD_ID, name)))));
-    }
-    public static void registerModItems() {
-         AlienMod.LOGGER.info("Registrando itens do Mod para " + AlienMod.MOD_ID);
-
-         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(fabricItemGroupEntries -> {
-             fabricItemGroupEntries.add(ALIEN_GOO);
-             fabricItemGroupEntries.add(ALIEN_DEVICE);
-             //fabricItemGroupEntries.add(ALIEN_STEEL_INGOT);
-         });
-
-    }
+            new SpawnEggItem(ModEntities.ALIEN, 0x00B050, 0x000000, new Item.Settings()));
 }

@@ -17,24 +17,35 @@ public class ModEntities {
         AlienMod.LOGGER.info("registrando entidades");
     }
 
-    // jeito 1
-    public static final EntityType<AlienEntity> ALIEN = Registry.register(
-            Registries.ENTITY_TYPE,
-            RegistryKey.of(Registries.ENTITY_TYPE.getKey(), Identifier.of(AlienMod.MOD_ID, "alien")),
-            FabricEntityType.Builder.createMob(AlienEntity::new, SpawnGroup.CREATURE, builder -> {
-                        builder.defaultAttributes(AlienEntity::createAttributes);
-                        return builder;
-                    }).dimensions(0.6F, 1.5F)
-                    .build(RegistryKey.of(Registries.ENTITY_TYPE.getKey(), Identifier.of(AlienMod.MOD_ID, "alien")))
-    );
+//    public static final EntityType<AlienEntity> ALIEN = Registry.register(
+//            Registries.ENTITY_TYPE,
+//            RegistryKey.of(Registries.ENTITY_TYPE.getKey(), Identifier.of(AlienMod.MOD_ID, "alien")),
+//            FabricEntityType.Builder.createMob(AlienEntity::new, SpawnGroup.CREATURE, builder -> {
+//                        builder.defaultAttributes(AlienEntity::createAttributes);
+//                        return builder;
+//                    }).dimensions(0.6F, 1.5F)
+//                    .build(RegistryKey.of(Registries.ENTITY_TYPE.getKey(), Identifier.of(AlienMod.MOD_ID, "alien")))
+//    );
+//    private static final RegistryKey<EntityType<?>> LASER_KEY =
+//            RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(AlienMod.MOD_ID, "laser"));
+//
+//    public static final EntityType<LaserProjectileEntity> LASER_PROJECTILE = Registry.register(Registries.ENTITY_TYPE,
+//            Identifier.of(AlienMod.MOD_ID, "laser"),
+//            EntityType.Builder.<LaserProjectileEntity>create(LaserProjectileEntity::new, SpawnGroup.MISC)
+//                    .dimensions(0.5f, 0.5f).build(LASER_KEY));
 
-    // jeito 2 (kaupenjoe)
-    private static final RegistryKey<EntityType<?>> LASER_KEY =
-            RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(AlienMod.MOD_ID, "laser"));
+    public static final EntityType<AlienEntity> ALIEN = Registry.register(Registries.ENTITY_TYPE,
+            Identifier.of(AlienMod.MOD_ID, "alien"),
+            EntityType.Builder.create(AlienEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(0.6F, 1.5F)
+                    .build()
+    );
 
     public static final EntityType<LaserProjectileEntity> LASER_PROJECTILE = Registry.register(Registries.ENTITY_TYPE,
             Identifier.of(AlienMod.MOD_ID, "laser"),
-            EntityType.Builder.<LaserProjectileEntity>create(LaserProjectileEntity::new, SpawnGroup.MISC)
-                    .dimensions(0.5f, 0.5f).build(LASER_KEY));
+            EntityType.Builder.create(LaserProjectileEntity::new, SpawnGroup.MISC)
+                    .dimensions(0.5F, 0.5F)
+                    .build()
+    );
 
 }

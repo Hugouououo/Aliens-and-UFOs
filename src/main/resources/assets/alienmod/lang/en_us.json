@@ -7,11 +7,11 @@
   "item.alienmod.ray_gun": "Ray Gun",
   "item.alienmod.alien_spawn_egg": "Alien Spawn Egg",
 
-  "item.alienmod.alien_goo_block": "Alien Goo Block",
-  "item.alienmod.alien_steel": "Extraterrestrial Steel",
-  "item.alienmod.alien_steel_slab": "Extraterrestrial Steel Slab",
-  "item.alienmod.alien_glass": "Extraterrestrial Glass",
-  "item.alienmod.alien_copper": "Extraterrestrial Copper",
+  "block.alienmod.alien_goo_block": "Alien Goo Block",
+  "block.alienmod.alien_steel": "Extraterrestrial Steel",
+  "block.alienmod.alien_steel_slab": "Extraterrestrial Steel Slab",
+  "block.alienmod.alien_glass": "Extraterrestrial Glass",
+  "block.alienmod.alien_copper": "Extraterrestrial Copper",
 
   "entity.alienmod.alien": "Alien",
 

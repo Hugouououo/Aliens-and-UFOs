@@ -2,7 +2,7 @@
   "required": true,
   "package": "com.hugouououo.alienmod.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [
+  "mixins":[
     "PlayerEntityRendererMixin"
   ],
   "injectors": {

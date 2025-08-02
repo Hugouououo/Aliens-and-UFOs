@@ -37,8 +37,8 @@ public class AlienHeldItemFeatureRenderer extends FeatureRenderer<AlienEntity, A
             matrices.multiply(RotationAxis.POSITIVE_Z.rotation(rightArm.roll));
             matrices.translate(rightArm.pivotX / 16.0F, rightArm.pivotY / 16.0F, rightArm.pivotZ / 16.0F);
 
-            // posicao          esq-dir  | cima-baixo | frente-tras
-            matrices.translate(0.085F, 0.25F, 0.4F);
+            // posicao         esq-dir | frente-tras | cima-baixo
+            matrices.translate(0.01F, 0.2F, 0.475F);
             // direcao
             matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90.0F));
             matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(0.0F));

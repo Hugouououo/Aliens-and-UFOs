@@ -2,6 +2,7 @@ package com.hugouououo.alienmod.item;
 
 import com.hugouououo.alienmod.AlienMod;
 import com.hugouououo.alienmod.entity.ModEntities;
+import com.hugouououo.alienmod.item.custom.BlasterItem;
 import com.hugouououo.alienmod.item.custom.RayGunItem;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
@@ -45,6 +46,9 @@ public class ModItems {
     // Itens
     public static final Item RAY_GUN = registerItem("ray_gun",
         new RayGunItem(new Item.Settings()));
+
+    public static final Item BLASTER = registerItem("blaster",
+            new BlasterItem(new Item.Settings()));
 
     public static final Item ALIEN_SPAWN_EGG = registerItem("alien_spawn_egg",
             new SpawnEggItem(ModEntities.ALIEN, 0x00B050, 0x000000, new Item.Settings()));

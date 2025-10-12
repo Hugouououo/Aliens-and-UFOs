@@ -5,6 +5,7 @@
   "item.alienmod.alien_device": "Dispositivo de Outro Mundo",
   "item.alienmod.alien_steel_ingot": "Barra de Aço de Outro Mundo",
   "item.alienmod.ray_gun": "Arma Laser",
+  "item.alienmod.blaster": "Blaster",
   "item.alienmod.alien_spawn_egg": "Ovo Gerador de Alienígena",
 
   "block.alienmod.alien_goo_block": "Bloco de Gosma Alienígena",
@@ -22,7 +23,11 @@
 
   "advancements.alienmod.mod_begins.title": "Eu Quero Acreditar",
   "advancements.alienmod.mod_begins.description": "Fique de olho nos céus!",
+
   "advancements.alienmod.enter_ufo.title": "Eles Vêm em Paz",
-  "advancements.alienmod.enter_ufo.description": "Entre em um OVNI pela primeira vez (e talvez a última)."
+  "advancements.alienmod.enter_ufo.description": "Entre em um OVNI pela primeira vez (e talvez a última).",
+
+  "advancements.alienmod.blaster.title": "Não é uma referência a Star Wars.",
+  "advancements.alienmod.blaster.description": "Crie um Blaster."
 }
 

@@ -2,6 +2,7 @@ package com.hugouououo.alienmod.entity;
 
 import com.hugouououo.alienmod.AlienMod;
 import com.hugouououo.alienmod.entity.custom.AlienEntity;
+import com.hugouououo.alienmod.entity.custom.BlueLaserProjectileEntity;
 import com.hugouououo.alienmod.entity.custom.LaserProjectileEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType;
 import net.minecraft.entity.EntityType;
@@ -44,6 +45,13 @@ public class ModEntities {
     public static final EntityType<LaserProjectileEntity> LASER_PROJECTILE = Registry.register(Registries.ENTITY_TYPE,
             Identifier.of(AlienMod.MOD_ID, "laser"),
             EntityType.Builder.create(LaserProjectileEntity::new, SpawnGroup.MISC)
+                    .dimensions(0.5F, 0.5F)
+                    .build()
+    );
+
+    public static final EntityType<BlueLaserProjectileEntity> BLUE_LASER_PROJECTILE = Registry.register(Registries.ENTITY_TYPE,
+            Identifier.of(AlienMod.MOD_ID, "blue_laser"),
+            EntityType.Builder.create(BlueLaserProjectileEntity::new, SpawnGroup.MISC)
                     .dimensions(0.5F, 0.5F)
                     .build()
     );

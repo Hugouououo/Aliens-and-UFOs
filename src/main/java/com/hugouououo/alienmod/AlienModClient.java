@@ -3,10 +3,7 @@ package com.hugouououo.alienmod;
 import com.hugouououo.alienmod.block.ModBlocks;
 //import com.hugouououo.alienmod.block.entity.ModBlockEntities;
 import com.hugouououo.alienmod.entity.ModEntities;
-import com.hugouououo.alienmod.entity.client.AlienModel;
-import com.hugouououo.alienmod.entity.client.AlienRenderer;
-import com.hugouououo.alienmod.entity.client.LaserProjectileModel;
-import com.hugouououo.alienmod.entity.client.LaserProjectileRenderer;
+import com.hugouououo.alienmod.entity.client.*;
 import com.hugouououo.alienmod.item.ModItems;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -32,6 +29,9 @@ public class AlienModClient implements ClientModInitializer {
         // Laser
         EntityModelLayerRegistry.registerModelLayer(LaserProjectileModel.LASER_PROJECTILE, LaserProjectileModel::getTexturedModelData);
         EntityRendererRegistry.register(ModEntities.LASER_PROJECTILE, LaserProjectileRenderer::new);
+        // Laser azul
+        EntityModelLayerRegistry.registerModelLayer(BlueLaserProjectileModel.BLUE_LASER_PROJECTILE, BlueLaserProjectileModel::getTexturedModelData);
+        EntityRendererRegistry.register(ModEntities.BLUE_LASER_PROJECTILE, BlueLaserProjectileRenderer::new);
 
         // BlockEntityRendererFactories.register(ModBlockEntities.ALIEN_CHEST, AlienChestModelRenderer::new);
 

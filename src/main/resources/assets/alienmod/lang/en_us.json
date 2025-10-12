@@ -5,6 +5,7 @@
   "item.alienmod.alien_device": "Extraterrestrial Device",
   "item.alienmod.alien_steel_ingot": "Extraterrestrial Steel Ingot",
   "item.alienmod.ray_gun": "Ray Gun",
+  "item.alienmod.blaster": "Blaster",
   "item.alienmod.alien_spawn_egg": "Alien Spawn Egg",
 
   "block.alienmod.alien_goo_block": "Alien Goo Block",
@@ -20,9 +21,13 @@
   "painting.alienmod.believe.title": "Believe",
   "painting.alienmod.believe.author": "Unknown Believer",
 
+
   "advancements.alienmod.mod_begins.title": "I Want to Believe",
   "advancements.alienmod.mod_begins.description": "Keep an eye on the sky!",
-  "advancements.alienmod.enter_ufo.title": "They Come In Peace",
-  "advancements.alienmod.enter_ufo.description": "Enter a UFO for the first time (and maybe the last)."
 
+  "advancements.alienmod.enter_ufo.title": "They Come In Peace",
+  "advancements.alienmod.enter_ufo.description": "Enter a UFO for the first time (and maybe the last).",
+
+  "advancements.alienmod.blaster.title": "Not a Star Wars reference.",
+  "advancements.alienmod.blaster.description": "Craft the Blaster."
 }

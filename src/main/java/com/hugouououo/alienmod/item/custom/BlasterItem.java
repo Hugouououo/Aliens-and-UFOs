@@ -32,7 +32,7 @@ public class BlasterItem extends RangedWeaponItem {
 
     @Override
     public Predicate<ItemStack> getProjectiles() {
-        return null;
+        return LASER_PROJECTILES;
     }
 
     @Override

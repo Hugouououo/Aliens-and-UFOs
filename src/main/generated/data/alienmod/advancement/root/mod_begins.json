@@ -14,7 +14,7 @@
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false,
-    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+    "background": "minecraft:textures/gui/advancements/backgrounds/end_stone.png"
   },
   "criteria": {
     "tick": {

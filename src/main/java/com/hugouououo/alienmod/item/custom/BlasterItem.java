@@ -1,6 +1,6 @@
 package com.hugouououo.alienmod.item.custom;
 
-import com.hugouououo.alienmod.entity.custom.LaserProjectileEntity;
+import com.hugouououo.alienmod.entity.custom.BlueLaserProjectileEntity;
 import com.hugouououo.alienmod.entity.ModEntities;
 import com.hugouououo.alienmod.sound.ModSounds;
 import net.minecraft.entity.EquipmentSlot;
@@ -23,10 +23,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Predicate;
 
-public class RayGunItem extends RangedWeaponItem {
+public class BlasterItem extends RangedWeaponItem {
 
     public static final Predicate<ItemStack> LASER_PROJECTILES = (stack) -> stack.isOf(Items.AIR);
-    public RayGunItem(Settings settings) {
+    public BlasterItem(Settings settings) {
         super(settings);
     }
 
@@ -45,7 +45,7 @@ public class RayGunItem extends RangedWeaponItem {
 
         projectile.setVelocity(shooter, shooter.getPitch(), shooter.getYaw(), 0.0F, speed, divergence);
 
-        if (projectile instanceof LaserProjectileEntity laserProjectile) {
+        if (projectile instanceof BlueLaserProjectileEntity laserProjectile) {
             laserProjectile.setInitialRotation(shooter.getPitch(), shooter.getYaw());
         }
 
@@ -59,10 +59,10 @@ public class RayGunItem extends RangedWeaponItem {
         shooter.getWorld().playSound(
                 null,
                 shooter.getBlockPos(),
-                ModSounds.LASER_SHOOT,
+                ModSounds.BLASTER_SHOOT,
                 SoundCategory.PLAYERS,
-                0.5F,
-                shooter.getWorld().random.nextFloat() * 0.2F + 1.2F
+                1F,
+                shooter.getWorld().random.nextFloat() * 0.1F + 1.1F
         );
     }
 
@@ -71,13 +71,14 @@ public class RayGunItem extends RangedWeaponItem {
         ItemStack itemStack = user.getStackInHand(hand);
 
         if (!user.getItemCooldownManager().isCoolingDown(itemStack.getItem())) {
-            user.getItemCooldownManager().set(itemStack.getItem(), 15); // cooldown
+            user.getItemCooldownManager().set(itemStack.getItem(), 0); // cooldown
 
             if (!world.isClient()) {
-                itemStack.damage(5, ((ServerWorld) world), ((ServerPlayerEntity) user),
+                itemStack.damage(1, ((ServerWorld) world), ((ServerPlayerEntity) user), // dano ao item (1/500)
                         item -> user.sendEquipmentBreakStatus(item, EquipmentSlot.MAINHAND));
 
-                ProjectileEntity laser = new LaserProjectileEntity(ModEntities.LASER_PROJECTILE, world);
+                // INVOCA LASER
+                ProjectileEntity laser = new BlueLaserProjectileEntity(ModEntities.BLUE_LASER_PROJECTILE, world);
                 shoot(user, laser, 0, 3.5f, 0f, user.getYaw(), null);
 
             }
@@ -86,6 +87,7 @@ public class RayGunItem extends RangedWeaponItem {
             return TypedActionResult.fail(itemStack);
         }
     }
+
 
     @Override
     public UseAction getUseAction(ItemStack stack) {

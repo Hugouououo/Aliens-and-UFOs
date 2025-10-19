@@ -62,7 +62,7 @@ public class RayGunItem extends RangedWeaponItem {
                 ModSounds.LASER_SHOOT,
                 SoundCategory.PLAYERS,
                 0.5F,
-                shooter.getWorld().random.nextFloat() * 0.2F + 1.2F
+                shooter.getWorld().random.nextFloat() * 0.4F + 1.0F
         );
     }
 

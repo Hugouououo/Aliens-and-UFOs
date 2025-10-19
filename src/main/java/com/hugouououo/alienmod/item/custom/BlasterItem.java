@@ -62,7 +62,7 @@ public class BlasterItem extends RangedWeaponItem {
                 ModSounds.BLASTER_SHOOT,
                 SoundCategory.PLAYERS,
                 1F,
-                shooter.getWorld().random.nextFloat() * 0.1F + 1.1F
+                shooter.getWorld().random.nextFloat() * 0.4F + 1.0F
         );
     }
 

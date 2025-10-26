@@ -1,3 +1,5 @@
+> 🛠️ Work In Progress! 📈 
+
 ![Title of the mod, in a Minecraft update title style](https://cdn.modrinth.com/data/cached_images/64b5ee526249bc55e4ab9fc23087d178395ff7ce.png)
 ###
 ### The Aliens are here! 👽
@@ -7,13 +9,13 @@ This new species can be found in a new structure, their spaceship: The UFO. This
 
 # Features of the Mod
 ## 🛸 Structures:
-### The UFO
+### The UFO 
 This otherworldly spaceship spawns between the Y coordinates of 200 and 250. <p>
 It's also only a little rarer than villages, so don't worry about missing out!
 ![The UFO, seen floating in the sky.](https://cdn.modrinth.com/data/cached_images/7902c9307504acad08fbc46dddd8741c03b8d236.jpeg)
 ![The UFO, seen from afar.](https://cdn.modrinth.com/data/cached_images/56cd79fff960c1eaf317bda2d9378867e06f6123.jpeg)
 ## 👽 Mobs:
-### The Aliens
+### The Aliens 
 This new species of mobs is a lot smarter than you think! They are as cute as they look; however, you must not harm them, or you'll face the consequences.
 ![The Aliens aboard the UFO.](https://cdn.modrinth.com/data/cached_images/1c4f98f13dfcddd6c47c373d08fdda03605def2f.jpeg)
 ![The Aliens, ready to retaliate.](https://cdn.modrinth.com/data/cached_images/c46357f7e335f3d9dae5453b95a33424874de788.jpeg)
@@ -54,7 +56,7 @@ Deals three hearts of damage and doesn't require any ammo.
 <details>
 <summary>🆕 Update Roadmap </summary>
 
-## 1.0 - Aliens and UFOs
+  ## 1.0 - Aliens and UFOs
 Initial Mod update, introducing its main elements.
 
 ## 1.1 - Otherworldly Weapons

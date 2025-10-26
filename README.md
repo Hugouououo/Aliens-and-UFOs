@@ -1,3 +1,5 @@
+> 🛠️ Work In Progress! 📈 
+
 ![Title of the mod, in a Minecraft update title style](https://cdn.modrinth.com/data/cached_images/64b5ee526249bc55e4ab9fc23087d178395ff7ce.png)
 ###
 ### The Aliens are here! 👽
@@ -9,24 +11,25 @@ This new species can be found in a new structure, their spaceship: The UFO. This
 ## 🛸 Structures:
 ### The UFO 
 This otherworldly spaceship spawns between the Y coordinates of 200 and 250. <p>
-It's also only a little rarer than villages, so don't worry about missing out!" ou "so you won't miss out
-![The UFO, seen floating in the sky.](https://cdn.modrinth.com/data/cached_images/cf86e4b22821e010e74d393bf6077b14cabd4777_0.webp)
-![The UFO, seen from afar.](https://cdn.modrinth.com/data/cached_images/de3518bc8fd59ed5fd6db8bcdb3f06f1ca3b0dc3_0.webp)
+It's also only a little rarer than villages, so don't worry about missing out!
+![The UFO, seen floating in the sky.](https://cdn.modrinth.com/data/cached_images/7902c9307504acad08fbc46dddd8741c03b8d236.jpeg)
+![The UFO, seen from afar.](https://cdn.modrinth.com/data/cached_images/56cd79fff960c1eaf317bda2d9378867e06f6123.jpeg)
 ## 👽 Mobs:
 ### The Aliens 
 This new species of mobs is a lot smarter than you think! They are as cute as they look; however, you must not harm them, or you'll face the consequences.
-![The Aliens aboard the UFO.](https://cdn.modrinth.com/data/cached_images/e518aec64e05455fae1b561fad6c4f7ef2809273.png)
-![An Alien, seen in The End](https://cdn.modrinth.com/data/cached_images/29060df2fc02289389299eb3fefaceb3b4c3d9e1.png)
+![The Aliens aboard the UFO.](https://cdn.modrinth.com/data/cached_images/1c4f98f13dfcddd6c47c373d08fdda03605def2f.jpeg)
+![The Aliens, ready to retaliate.](https://cdn.modrinth.com/data/cached_images/c46357f7e335f3d9dae5453b95a33424874de788.jpeg)
+![The Aliens, seen in The End. (Enderman variants not included)](https://cdn.modrinth.com/data/cached_images/3bda7adc00dbb605dea2b5b9c888d6ea63ca3077.jpeg)
 ## 🔫 Items:
 ### Ray Gun
 A gun that shoots lasers, designed to neutralize threats quickly and made from alien technology.
 Deals three hearts of damage and doesn't require any ammo.
-![A player holding the Ray Gun, surrounded by Aliens](https://cdn.modrinth.com/data/cached_images/619291346b841f1fefa6302992e3ba137a2d33a2.png)
+![Steve holding the Ray Gun.](https://cdn.modrinth.com/data/cached_images/23db8f4fbd78d5592f005b8f2424f2046204ed92.jpeg)
 ## Other Features:
 - A new painting.
 - 4 new blocks.
 - Compatible with worldgen and other structure mods!
-- Brazilian Portuguese translations.
+- **Brazilian Portuguese** translations.
 
 <details>
 <summary>⚠️ Known Bugs </summary>
@@ -40,15 +43,33 @@ Deals three hearts of damage and doesn't require any ammo.
 
 
 # Upcoming features
-- 🔭 1.21.3 port.
+- 🔭 1.21.X ports.
 - 🦊 NeoForge port.
 - 🔫 New craftable gun item.
 - 🛸 New Villager profession: The "Ufolloger".
 - 🏛️ More structures.
-- 🗺️ More translations (Spanish and Russian)!
+- 🗺️ More translations (**Spanish** and **Russian**)!
 - 👽 Alien-themed End biome.
 - And much more!
-* 🔧 A Forge port is considered, but not planned yet!
+
+
+<details>
+<summary>🆕 Update Roadmap </summary>
+
+  ## 1.0 - Aliens and UFOs
+Initial Mod update, introducing its main elements.
+
+## 1.1 - Otherworldly Weapons
+Focused on adding the new weapon (and preparing space for others), but also on fixing bugs.
+
+## 1.2 - Ufology
+This update will add more to the mod's worldbuilding, centered mainly on the new villager profession and new structures.
+
+## 1.3 - Homeworld
+Certainly the most challenging update. It will feature major changes centered on The End, such as a new biome and new, larger structures. As well as an overhaul of already established concepts.
+</details>
+
+
 
 ##
 

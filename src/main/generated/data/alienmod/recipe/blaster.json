@@ -22,9 +22,9 @@
     }
   },
   "pattern": [
-    " RV",
-    "NAD",
-    "M  "
+    "VR ",
+    "DAN",
+    "  M"
   ],
   "result": {
     "count": 1,

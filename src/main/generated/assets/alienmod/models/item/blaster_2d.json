@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "alienmod:item/ray_gun_2d"
+    "layer0": "alienmod:item/blaster_2d"
   }
 }

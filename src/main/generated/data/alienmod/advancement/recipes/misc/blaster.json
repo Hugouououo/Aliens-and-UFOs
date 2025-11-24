@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "alienmod:blaster"
+            "items": "alienmod:alien_device"
           }
         ]
       },

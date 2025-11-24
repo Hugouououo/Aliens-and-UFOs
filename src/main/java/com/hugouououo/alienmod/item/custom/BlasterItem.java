@@ -91,7 +91,7 @@ public class BlasterItem extends RangedWeaponItem {
 
     @Override
     public UseAction getUseAction(ItemStack stack) {
-        return UseAction.CROSSBOW;
+        return UseAction.NONE;
     }
 
 }

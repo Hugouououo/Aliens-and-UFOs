@@ -18,8 +18,6 @@
       "type": "minecraft:model",
       "model": "alienmod:item/blaster"
     },
-    "property": "minecraft:display_context",
-
-
+    "property": "minecraft:display_context"
   }
 }

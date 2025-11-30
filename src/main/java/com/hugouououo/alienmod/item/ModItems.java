@@ -2,6 +2,7 @@ package com.hugouououo.alienmod.item;
 
 import com.hugouououo.alienmod.AlienMod;
 import com.hugouououo.alienmod.entity.ModEntities;
+import com.hugouououo.alienmod.item.custom.BlasterItem;
 import com.hugouououo.alienmod.item.custom.RayGunItem;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
@@ -25,10 +26,12 @@ public class ModItems {
 
     // Itens
     public static final Item RAY_GUN = registerItem("ray_gun",
-        setting -> new RayGunItem(setting.maxDamage(500)));
-
+            setting -> new RayGunItem(setting.maxDamage(500)));
+    public static final Item BLASTER = registerItem("blaster",
+            setting -> new BlasterItem(setting.maxDamage(500)));
     public static final Item ALIEN_SPAWN_EGG = registerItem("alien_spawn_egg",
-            setting -> new SpawnEggItem(ModEntities.ALIEN, setting));
+            setting -> new SpawnEggItem(ModEntities.ALIEN, 0x00B050, 0x000000, setting));
+
 
 
     // REGISTRADORES
@@ -37,13 +40,10 @@ public class ModItems {
                 function.apply(new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(AlienMod.MOD_ID, name)))));
     }
     public static void registerModItems() {
-         AlienMod.LOGGER.info("Registrando itens do Mod para " + AlienMod.MOD_ID);
-
-         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(fabricItemGroupEntries -> {
-             fabricItemGroupEntries.add(ALIEN_GOO);
-             fabricItemGroupEntries.add(ALIEN_DEVICE);
-             //fabricItemGroupEntries.add(ALIEN_STEEL_INGOT);
-         });
-
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(fabricItemGroupEntries -> {
+            fabricItemGroupEntries.add(ALIEN_GOO);
+            fabricItemGroupEntries.add(ALIEN_DEVICE);
+            //fabricItemGroupEntries.add(ALIEN_STEEL_INGOT);
+        });
     }
 }

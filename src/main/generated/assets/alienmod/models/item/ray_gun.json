@@ -165,5 +165,7 @@
 			"translation": [0, 5, -1],
 			"scale": [1.25, 1.25, 1.25]
 		}
-	}
+	},
+
+	"gui_light": "front"
 }

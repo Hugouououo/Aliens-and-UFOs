@@ -7,11 +7,14 @@ import com.hugouououo.alienmod.entity.client.*;
 import com.hugouououo.alienmod.item.ModItems;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 //import net.minecraft.client.data.ModelProvider;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
+import net.minecraft.client.util.ModelIdentifier;
+import net.minecraft.util.Identifier;
 //import com.hugouououo.alienmod.block.entity.client.AlienChestModelRenderer;
 
 public class AlienModClient implements ClientModInitializer {
@@ -35,6 +38,12 @@ public class AlienModClient implements ClientModInitializer {
 
         // BlockEntityRendererFactories.register(ModBlockEntities.ALIEN_CHEST, AlienChestModelRenderer::new);
 
+//        ModelLoadingPlugin.register(pluginContext -> {
+//            pluginContext.addModels(
+//                    Identifier.of(AlienMod.MOD_ID, "item/blaster_2d"),
+//                    Identifier.of(AlienMod.MOD_ID, "item/ray_gun_2d")
+//            );
+//        });
     }
 
 }

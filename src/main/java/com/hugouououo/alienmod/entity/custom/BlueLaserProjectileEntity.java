@@ -61,7 +61,7 @@ public class BlueLaserProjectileEntity extends ProjectileEntity {
 
         if (this.getOwner() instanceof LivingEntity owner && this.getWorld() instanceof ServerWorld serverWorld) {
             DamageSource source = serverWorld.getDamageSources().mobProjectile(this, owner);
-            entity.damage(source, 6.0F);
+            entity.damage(serverWorld, source, 6.0F);
 
             Vec3d hitPos = entityHitResult.getPos();
             serverWorld.spawnParticles(ParticleTypes.LAVA, hitPos.x, hitPos.y, hitPos.z, 3, 0.025, 0.025, 0.025, 0.0);

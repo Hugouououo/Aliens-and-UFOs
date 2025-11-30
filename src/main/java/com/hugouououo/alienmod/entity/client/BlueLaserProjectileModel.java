@@ -9,14 +9,14 @@ import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
-public class BlueLaserProjectileModel extends EntityModel<BlueLaserProjectileEntity> {
+public class BlueLaserProjectileModel extends EntityModel<LaserProjectileRenderState> {
 
     public static final EntityModelLayer BLUE_LASER_PROJECTILE = new EntityModelLayer(Identifier.of(AlienMod.MOD_ID,"blue_laser"), "main");
 
     private final ModelPart laser;
 
     public BlueLaserProjectileModel(ModelPart root) {
-        super();
+        super(root);
         this.laser = root.getChild("laser");
     }
     public static TexturedModelData getTexturedModelData() {
@@ -30,14 +30,5 @@ public class BlueLaserProjectileModel extends EntityModel<BlueLaserProjectileEnt
     
     public ModelPart getModelPart() {
         return this.laser;
-    }
-
-    @Override
-    public void setAngles(BlueLaserProjectileEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
-
-    }
-    @Override
-    public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
-        laser.render(matrices, vertices, light, overlay, color);
     }
 }

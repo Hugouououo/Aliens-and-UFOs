@@ -1,60 +1,51 @@
 package com.hugouououo.alienmod.mixin;
 
-import com.llamalad7.mixinextras.sugar.Local;
 import com.hugouououo.alienmod.AlienMod;
 import com.hugouououo.alienmod.item.ModItems;
-import net.minecraft.client.render.item.ItemModels;
+import com.llamalad7.mixinextras.sugar.Local;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.BakedModel;
-import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ModelTransformationMode;
 import net.minecraft.util.Identifier;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(ItemRenderer.class)
 public abstract class ItemRendererMixin {
 
-    @Shadow
-    @Final
-    private ItemModels models;
-
-    @Shadow
-    public abstract ItemModels getModels();
-
-    @ModifyVariable(
-            method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V",
-            at = @At(value = "HEAD"),
-            argsOnly = true
-    )
-    public BakedModel renderItem(BakedModel bakedModel, @Local(argsOnly = true) ItemStack stack, @Local(argsOnly = true) ModelTransformationMode renderMode) {
-        if (stack.getItem() == ModItems.BLASTER && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
-            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(AlienMod.MOD_ID, "blaster_2d")));
-        }
-        if (stack.getItem() == ModItems.RAY_GUN && (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED)) {
-            return getModels().getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(AlienMod.MOD_ID, "ray_gun_2d")));
-        }
-
-        return bakedModel;
+    // Busca o modelo registrado lá no AlienModClient
+    private BakedModel getExtraModel(String modelName) {
+        // CORREÇÃO AQUI: Mudamos de "inventory" para "standalone"
+        // Modelos carregados via addModels() são salvos como "standalone"
+        return MinecraftClient.getInstance().getBakedModelManager()
+                .getModel(new ModelIdentifier(Identifier.of(AlienMod.MOD_ID, "item/" + modelName), "standalone"));
     }
 
     @ModifyVariable(
-            method = "getModel",
-            at = @At(value = "STORE"),
-            ordinal = 1
+            method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V",
+            at = @At("HEAD"),
+            argsOnly = true
     )
-    public BakedModel getHeldItemModelMixin(BakedModel bakedModel, @Local(argsOnly = true) ItemStack stack) {
+    public BakedModel use2DModel(BakedModel originalModel, @Local(argsOnly = true) ItemStack stack, @Local(argsOnly = true) ModelTransformationMode renderMode) {
+
+        // Se for o BLASTER e estiver na mão ou GUI, usa o modelo 2D
         if (stack.getItem() == ModItems.BLASTER) {
-            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(AlienMod.MOD_ID, "blaster")));
-        }
-        if (stack.getItem() == ModItems.RAY_GUN) {
-            return this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(AlienMod.MOD_ID, "ray_gun")));
+            if (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED) {
+                return getExtraModel("blaster_2d");
+            }
         }
 
-        return bakedModel;
+        // Se for a RAY_GUN e estiver na mão ou GUI, usa o modelo 2D
+        if (stack.getItem() == ModItems.RAY_GUN) {
+            if (renderMode == ModelTransformationMode.GUI || renderMode == ModelTransformationMode.GROUND || renderMode == ModelTransformationMode.FIXED) {
+                return getExtraModel("ray_gun_2d");
+            }
+        }
+
+        return originalModel;
     }
 }

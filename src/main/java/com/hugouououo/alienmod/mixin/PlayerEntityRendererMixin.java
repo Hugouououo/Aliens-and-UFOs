@@ -5,27 +5,46 @@ import com.hugouououo.alienmod.item.custom.RayGunItem;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
+import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerEntityRenderer.class)
 public class PlayerEntityRendererMixin {
 
-    @Inject(method = "getArmPose", at=@At("HEAD"), cancellable = true)
-
-    private static void getCustomArmPose(AbstractClientPlayerEntity player, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
-
+    // Injetamos no métoodo que PREPARA o estado, onde ainda temos acesso ao Player e ao Item
+    @Inject(method = "updateHandState", at = @At("TAIL"))
+    private void alienmod$injectHandState(AbstractClientPlayerEntity player, PlayerEntityRenderState.HandState handState, Hand hand, CallbackInfo ci) {
         ItemStack stack = player.getStackInHand(hand);
+
+        // Verificamos se é o seu item
         if (stack.getItem() instanceof RayGunItem || stack.getItem() instanceof BlasterItem) {
-            cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_HOLD);
+            // Forçamos o estado 'hasChargedCrossbow' para verdadeiro.
+            // O méetodo getArmPose original vai ler isso e retornar ArmPose.CROSSBOW_HOLD automaticamente.
+            handState.hasChargedCrossbow = true;
         }
     }
 }
+
+//@Mixin(PlayerEntityRenderer.class)
+//public class PlayerEntityRendererMixin {
+//
+//    @Inject(method = "getArmPose", at=@At("HEAD"), cancellable = true)
+//
+//    private static void getCustomArmPose(AbstractClientPlayerEntity player, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
+//
+//        ItemStack stack = player.getStackInHand(hand);
+//        if (stack.getItem() instanceof RayGunItem || stack.getItem() instanceof BlasterItem) {
+//            cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_HOLD);
+//        }
+//    }
+//}
 
 //@Mixin(PlayerEntityRenderer.class)
 //@Environment(EnvType.CLIENT)

@@ -1,22 +1,20 @@
 package com.hugouououo.alienmod.entity.client;
 
 import com.hugouououo.alienmod.AlienMod;
-import com.hugouououo.alienmod.entity.custom.LaserProjectileEntity;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.render.entity.state.EntityRenderState;
 import net.minecraft.util.Identifier;
 
-public class LaserProjectileModel extends EntityModel<LaserProjectileEntity> {
+public class LaserProjectileModel extends EntityModel<LaserProjectileRenderState> {
 
     public static final EntityModelLayer LASER_PROJECTILE = new EntityModelLayer(Identifier.of(AlienMod.MOD_ID,"laser"), "main");
 
     private final ModelPart laser;
 
     public LaserProjectileModel(ModelPart root) {
-        super();
+        super(root);
         this.laser = root.getChild("laser");
     }
     public static TexturedModelData getTexturedModelData() {
@@ -27,17 +25,8 @@ public class LaserProjectileModel extends EntityModel<LaserProjectileEntity> {
                 .cuboid(-1.0F, -2.0F, -5.0F, 2.0F, 2.0F, 10.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.5F, 0.0F,0f,0f,0f));
         return TexturedModelData.of(modelData, 32, 32);
     }
-    
+
     public ModelPart getModelPart() {
         return this.laser;
-    }
-
-    @Override
-    public void setAngles(LaserProjectileEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
-
-    }
-    @Override
-    public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
-        laser.render(matrices, vertices, light, overlay, color);
     }
 }

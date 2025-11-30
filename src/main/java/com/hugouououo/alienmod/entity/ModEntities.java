@@ -29,7 +29,6 @@ public class ModEntities {
 //    );
 //    private static final RegistryKey<EntityType<?>> LASER_KEY =
 //            RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(AlienMod.MOD_ID, "laser"));
-//
 //    public static final EntityType<LaserProjectileEntity> LASER_PROJECTILE = Registry.register(Registries.ENTITY_TYPE,
 //            Identifier.of(AlienMod.MOD_ID, "laser"),
 //            EntityType.Builder.<LaserProjectileEntity>create(LaserProjectileEntity::new, SpawnGroup.MISC)
@@ -39,21 +38,21 @@ public class ModEntities {
             Identifier.of(AlienMod.MOD_ID, "alien"),
             EntityType.Builder.create(AlienEntity::new, SpawnGroup.CREATURE)
                     .dimensions(0.6F, 1.5F)
-                    .build()
+                    .build(RegistryKey.of(Registries.ENTITY_TYPE.getKey(), Identifier.of(AlienMod.MOD_ID, "alien")))
     );
 
     public static final EntityType<LaserProjectileEntity> LASER_PROJECTILE = Registry.register(Registries.ENTITY_TYPE,
             Identifier.of(AlienMod.MOD_ID, "laser"),
             EntityType.Builder.create(LaserProjectileEntity::new, SpawnGroup.MISC)
                     .dimensions(0.5F, 0.5F)
-                    .build()
+                    .build(RegistryKey.of(Registries.ENTITY_TYPE.getKey(), Identifier.of(AlienMod.MOD_ID, "laser")))
     );
 
     public static final EntityType<BlueLaserProjectileEntity> BLUE_LASER_PROJECTILE = Registry.register(Registries.ENTITY_TYPE,
             Identifier.of(AlienMod.MOD_ID, "blue_laser"),
             EntityType.Builder.create(BlueLaserProjectileEntity::new, SpawnGroup.MISC)
                     .dimensions(0.5F, 0.5F)
-                    .build()
+                    .build(RegistryKey.of(Registries.ENTITY_TYPE.getKey(), Identifier.of(AlienMod.MOD_ID, "blue_laser")))
     );
 
 }

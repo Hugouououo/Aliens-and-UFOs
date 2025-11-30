@@ -5,7 +5,7 @@
       {
         "model": {
           "type": "minecraft:model",
-          "model": "alienmod:item/blaster_2d"
+          "model": "alienmod:item/blaster"
         },
         "when": [
           "gui",
@@ -16,7 +16,7 @@
     ],
     "fallback": {
       "type": "minecraft:model",
-      "model": "alienmod:item/blaster"
+      "model": "alienmod:item/blaster_2d"
     },
     "property": "minecraft:display_context"
   }

@@ -71,7 +71,8 @@ Certainly the most challenging update. It will feature major changes centered on
 <summary>⚠️ Known Bugs </summary>
 
 - The painting can't be accessed by inventory
-- Firing with a gun triggers the default right-click animation
+- Firing with a weapon triggers the default right-click animation
+- The weapons in 1.21.2 and 1.21.3 do not have a 2D texture in the inventory.
 
 </details>
 

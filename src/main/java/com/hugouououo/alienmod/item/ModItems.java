@@ -30,7 +30,7 @@ public class ModItems {
     public static final Item BLASTER = registerItem("blaster",
             setting -> new BlasterItem(setting.maxDamage(500)));
     public static final Item ALIEN_SPAWN_EGG = registerItem("alien_spawn_egg",
-            setting -> new SpawnEggItem(ModEntities.ALIEN, 0x00B050, 0x000000, setting));
+            setting -> new SpawnEggItem(ModEntities.ALIEN, setting));
 
 
 

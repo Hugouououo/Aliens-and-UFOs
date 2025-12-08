@@ -2,14 +2,17 @@ package com.hugouououo.alienmod.datagen;
 
 import com.hugouououo.alienmod.block.ModBlocks;
 import com.hugouououo.alienmod.item.ModItems;
+import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
-import net.minecraft.data.client.BlockStateModelGenerator;
-import net.minecraft.data.client.ItemModelGenerator;
-import net.minecraft.data.client.Model;
-import net.minecraft.data.client.Models;
+//import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
+import net.minecraft.client.data.BlockStateModelGenerator;
+import net.minecraft.client.data.ItemModelGenerator;
+//import net.minecraft.data.client.BlockStateModelGenerator;
+//import net.minecraft.data.client.ItemModelGenerator;
+//import net.minecraft.data.client.Model;
+//import net.minecraft.data.client.Models;
+import net.minecraft.client.data.Models;
 import net.minecraft.util.Identifier;
-
 import java.util.Optional;
 
 public class ModModelProvider extends FabricModelProvider {

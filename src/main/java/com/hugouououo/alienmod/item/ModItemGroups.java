@@ -24,8 +24,9 @@ public class ModItemGroups {
                         .entries((displayContext, entries) -> {
 
                             entries.add(ModItems.ALIEN_SPAWN_EGG);
-                            entries.add(ModItems.ALIEN_DEVICE);
                             entries.add(ModItems.RAY_GUN);
+                            entries.add(ModItems.BLASTER);
+                            entries.add(ModItems.ALIEN_DEVICE);
                             entries.add(ModItems.ALIEN_GOO);
                             entries.add(ModBlocks.ALIEN_GOO_BLOCK);
                             entries.add(ModBlocks.ALIEN_STEEL);
@@ -37,7 +38,5 @@ public class ModItemGroups {
                         })
                         .build()
         );
-
-        // ta desatualizado para 1.21.4 mas ta funcionando
     }
 }

@@ -25,7 +25,7 @@ public class LaserProjectileModel extends EntityModel<LaserProjectileRenderState
                 .cuboid(-1.0F, -2.0F, -5.0F, 2.0F, 2.0F, 10.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.5F, 0.0F,0f,0f,0f));
         return TexturedModelData.of(modelData, 32, 32);
     }
-    
+
     public ModelPart getModelPart() {
         return this.laser;
     }

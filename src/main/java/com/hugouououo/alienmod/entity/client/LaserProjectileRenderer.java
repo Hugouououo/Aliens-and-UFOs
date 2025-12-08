@@ -60,4 +60,3 @@ public class LaserProjectileRenderer extends EntityRenderer<LaserProjectileEntit
         return 15;
     }
 }
-

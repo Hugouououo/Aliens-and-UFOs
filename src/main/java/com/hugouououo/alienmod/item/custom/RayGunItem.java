@@ -5,10 +5,8 @@ import com.hugouououo.alienmod.entity.ModEntities;
 import com.hugouououo.alienmod.sound.ModSounds;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ProjectileDeflection;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.RangedWeaponItem;
@@ -18,7 +16,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -34,7 +31,7 @@ public class RayGunItem extends RangedWeaponItem {
 
     @Override
     public Predicate<ItemStack> getProjectiles() {
-        return null;
+        return LASER_PROJECTILES;
     }
 
     @Override
@@ -64,7 +61,7 @@ public class RayGunItem extends RangedWeaponItem {
                 ModSounds.LASER_SHOOT,
                 SoundCategory.PLAYERS,
                 0.5F,
-                shooter.getWorld().random.nextFloat() * 0.2F + 1.2F
+                shooter.getWorld().random.nextFloat() * 0.4F + 1.0F
         );
     }
 
@@ -91,7 +88,9 @@ public class RayGunItem extends RangedWeaponItem {
 
     @Override
     public UseAction getUseAction(ItemStack stack) {
-        return UseAction.CROSSBOW;
+        return UseAction.NONE;
     }
+
+
 
 }

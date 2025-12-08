@@ -44,34 +44,34 @@ public class AlienModel extends BipedEntityModel<AlienRenderState> {
                 EntityModelPartNames.HEAD, ModelPartBuilder
                 .create()
                 .uv(0, 0)
-                .cuboid(-4.0F, -7.0F, -5.0F, 8.0F, 8.0F, 8.0F, new Dilation(0.0F)), ModelTransform.origin(0.0F, 5.0F, 1.0F));
+                .cuboid(-4.0F, -7.0F, -5.0F, 8.0F, 8.0F, 8.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 5.0F, 1.0F));
 
         modelPartData2.addChild(EntityModelPartNames.HAT, ModelPartBuilder.create(), ModelTransform.NONE);
 
         modelPartData.addChild(EntityModelPartNames.RIGHT_LEG, ModelPartBuilder
             .create()
             .uv(18, 28)
-            .cuboid(0.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, new Dilation(0.0F)), ModelTransform.origin(-3.0F, 16.0F, 0.0f));
+            .cuboid(0.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(-3.0F, 16.0F, 0.0f));
 
         modelPartData.addChild(EntityModelPartNames.LEFT_LEG, ModelPartBuilder
                 .create()
                 .uv(26, 28)
-                .cuboid(-2.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, new Dilation(0.0F)), ModelTransform.origin(3.0F, 16.0F, 0.0F));
+                .cuboid(-2.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(3.0F, 16.0F, 0.0F));
 
         modelPartData.addChild(EntityModelPartNames.RIGHT_ARM, ModelPartBuilder
                 .create()
                 .uv(18, 16)
-                .cuboid(0.0F, 0.5F, -1.0F, 2.0F, 10.0F, 2.0F, new Dilation(0.0F)), ModelTransform.origin(-5.0F, 5.5F, 0.0f));
+                .cuboid(0.0F, 0.5F, -1.0F, 2.0F, 10.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(-5.0F, 5.5F, 0.0f));
 
         modelPartData.addChild(EntityModelPartNames.LEFT_ARM, ModelPartBuilder
                 .create()
                 .uv(26, 16)
-                .cuboid(-2.0F, 0.5F, -1.0F, 2.0F, 10.0F, 2.0F, new Dilation(0.0F)), ModelTransform.origin(5.0F, 5.5F, 0.0F));
+                .cuboid(-2.0F, 0.5F, -1.0F, 2.0F, 10.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(5.0F, 5.5F, 0.0F));
 
         modelPartData.addChild(EntityModelPartNames.BODY, ModelPartBuilder
                 .create()
                 .uv(0, 16)
-                .cuboid(-3.0F, -18.0F, -1.5F, 6.0F, 10.0F, 3.0F, new Dilation(0.0F)), ModelTransform.origin(0.0F, 24.0F, 0.0F));
+                .cuboid(-3.0F, -18.0F, -1.5F, 6.0F, 10.0F, 3.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
 
         return TexturedModelData.of(modelData, 64, 64);
     }
@@ -107,32 +107,32 @@ public class AlienModel extends BipedEntityModel<AlienRenderState> {
 //    ModelPartData rightLeg = modelPartData.addChild("rightLeg", ModelPartBuilder
 //            .create()
 //            .uv(18, 28)
-//            .cuboid(0.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, new Dilation(0.0F)), ModelTransform.origin(-3.0F, 16.0F, 0.0f);
+//            .cuboid(0.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(-3.0F, 16.0F, 0.0f);
 //
 //    ModelPartData leftLeg = modelPartData.addChild("leftLeg", ModelPartBuilder
 //            .create()
 //            .uv(26, 28)
-//            .cuboid(-2.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, new Dilation(0.0F)), ModelTransform.origin(3.0F, 16.0F, 0.0F));
+//            .cuboid(-2.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(3.0F, 16.0F, 0.0F));
 //
 //    ModelPartData rightArm = modelPartData.addChild("rightArm", ModelPartBuilder
 //            .create()
 //            .uv(18, 16)
-//            .cuboid(0.0F, 0.5F, -1.0F, 2.0F, 10.0F, 2.0F, new Dilation(0.0F)), ModelTransform.origin(-5.0F, 5.5F, 0.0f));
+//            .cuboid(0.0F, 0.5F, -1.0F, 2.0F, 10.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(-5.0F, 5.5F, 0.0f));
 //
 //    ModelPartData leftArm = modelPartData.addChild("leftArm", ModelPartBuilder
 //            .create()
 //            .uv(26, 16)
-//            .cuboid(-2.0F, 0.5F, -1.0F, 2.0F, 10.0F, 2.0F, new Dilation(0.0F)), ModelTransform.origin(5.0F, 5.5F, 0.0F));
+//            .cuboid(-2.0F, 0.5F, -1.0F, 2.0F, 10.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(5.0F, 5.5F, 0.0F));
 //
 //    ModelPartData body = modelPartData.addChild("body", ModelPartBuilder
 //            .create()
 //            .uv(0, 16)
-//            .cuboid(-3.0F, -18.0F, -1.5F, 6.0F, 10.0F, 3.0F, new Dilation(0.0F)), ModelTransform.origin(0.0F, 24.0F, 0.0F));
+//            .cuboid(-3.0F, -18.0F, -1.5F, 6.0F, 10.0F, 3.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
 //
 //    ModelPartData head = modelPartData.addChild("head", ModelPartBuilder
 //            .create()
 //            .uv(0, 0)
-//            .cuboid(-4.0F, -7.0F, -5.0F, 8.0F, 8.0F, 8.0F, new Dilation(0.0F)), ModelTransform.origin(0.0F, 5.0F, 1.0F));
+//            .cuboid(-4.0F, -7.0F, -5.0F, 8.0F, 8.0F, 8.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 5.0F, 1.0F));
 //
 //    ModelPartData hat = modelPartData.addChild("hat", ModelPartBuilder.create(), ModelTransform.NONE);
 //

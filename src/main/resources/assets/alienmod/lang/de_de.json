@@ -1,0 +1,32 @@
+{
+  "itemgroup.alienmod.alien": "Außerirdische",
+
+  "item.alienmod.alien_goo": "Alienschleim",
+  "item.alienmod.alien_device": "Außerirdisches Gerät",
+  "item.alienmod.alien_steel_ingot": "Außerirdischer Stahlbarren",
+  "item.alienmod.ray_gun": "Strahlenpistole",
+  "item.alienmod.blaster": "Blaster",
+  "item.alienmod.alien_spawn_egg": "Alien-Spawn-Ei",
+
+  "block.alienmod.alien_goo_block": "Alienschleimblock",
+  "block.alienmod.alien_steel": "Außerirdischer Stahl",
+  "block.alienmod.alien_steel_slab": "Außerirdische Stahlstufe",
+  "block.alienmod.alien_glass": "Außerirdisches Glas",
+  "block.alienmod.alien_copper": "Außerirdisches Kupfer",
+
+  "entity.alienmod.alien": "Außerirdischer",
+
+  "block.alienmod.alien_chest": "Außerirdische Truhe",
+
+  "painting.alienmod.believe.title": "Glauben",
+  "painting.alienmod.believe.author": "Unbekannter Gläubiger",
+
+  "advancements.alienmod.mod_begins.title": "Ich will glauben",
+  "advancements.alienmod.mod_begins.description": "Behalte den Himmel im Auge!",
+
+  "advancements.alienmod.enter_ufo.title": "Sie kommen in Frieden",
+  "advancements.alienmod.enter_ufo.description": "Betritt ein UFO zum ersten Mal (und vielleicht zum letzten).",
+
+  "advancements.alienmod.blaster.title": "Keine Star-Wars-Anspielung.",
+  "advancements.alienmod.blaster.description": "Stelle einen Blaster her."
+}

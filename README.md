@@ -33,10 +33,10 @@ A powerful handcrafted weapon that fires blue lasers non-stop and deals the same
 <details>
   <summary>🗺️Translations!</summary>
 
-- Portuguese (Brazil, Portugal)
-- Spanish (Mexico, Spain)
-- Russian
-- German
+- **Portuguese** (Brazil, Portugal)
+- **Spanish** (Mexico, Spain)
+- **Russian**
+- **German**
 
 </details>
 
@@ -64,15 +64,14 @@ Focused on adding the new weapon (and preparing space for others), but also on f
 This update will add more to the mod's worldbuilding, centered mainly on the new villager profession and new structures.
 
 ## 1.3 - Homeworld
-Certainly the most challenging update. It will feature major changes centered on The End, such as a new biome and new, larger structures. As well as an overhaul of already established concepts.
+Certainly the most challenging update. It will feature major changes centered on The End, such as a new biome and larger structures. As well as an overhaul of already established concepts.
 </details>
 
 <details>
 <summary>⚠️ Known Bugs </summary>
 
 - The painting can't be accessed by inventory
-- Firing with a weapon triggers the default right-click animation
-- The weapons in 1.21.2 and 1.21.3 do not have a 2D texture in the inventory.
+- Firing with a gun triggers the default right-click animation
 
 </details>
 
@@ -83,3 +82,5 @@ Certainly the most challenging update. It will feature major changes centered on
 ### 
 
 ( Special thanks to [Kaupenjoe](https://www.youtube.com/@ModdingByKaupenjoe) for his wonderful tutorial series; without it, this mod wouldn't exist. )
+
+( **Feel free to use this mod in your modpack.** )

@@ -13,7 +13,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 //import net.minecraft.client.data.ModelProvider;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
-import net.minecraft.client.util.ModelIdentifier;
+//import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.util.Identifier;
 //import com.hugouououo.alienmod.block.entity.client.AlienChestModelRenderer;
 

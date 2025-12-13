@@ -1,12 +1,10 @@
 package com.hugouououo.alienmod.block;
 
 import com.hugouououo.alienmod.AlienMod;
-import com.hugouououo.alienmod.block.custom.AlienChestBlock;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+//import com.hugouououo.alienmod.block.custom.AlienChestBlock;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -91,12 +89,12 @@ public class ModBlocks {
             true
     );
 
-    public static final Block ALIEN_CHEST = registerBlock(
-            "alien_chest",
-            AlienChestBlock::new,
-            AbstractBlock.Settings.create()
-            .strength(2.5f)
-            .nonOpaque()
-            .sounds(BlockSoundGroup.NETHER_WOOD),
-            true);
+//    public static final Block ALIEN_CHEST = registerBlock(
+//            "alien_chest",
+//            AlienChestBlock::new,
+//            AbstractBlock.Settings.create()
+//            .strength(2.5f)
+//            .nonOpaque()
+//            .sounds(BlockSoundGroup.NETHER_WOOD),
+//            true);
 }

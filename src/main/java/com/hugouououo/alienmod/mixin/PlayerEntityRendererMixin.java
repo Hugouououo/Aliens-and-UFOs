@@ -1,5 +1,6 @@
 package com.hugouououo.alienmod.mixin;
 
+import com.hugouououo.alienmod.item.custom.BlasterItem;
 import com.hugouououo.alienmod.item.custom.RayGunItem;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
@@ -20,8 +21,8 @@ public class PlayerEntityRendererMixin {
             cancellable = true
     )
     private static void setRayGunArmPose(PlayerEntity player, ItemStack stack, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
-        if (stack.getItem() instanceof RayGunItem) {
-            cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_HOLD); // ou outro ArmPose que levante o braço
+        if (stack.getItem() instanceof RayGunItem || stack.getItem() instanceof BlasterItem ){
+            cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_HOLD);
         }
     }
 }

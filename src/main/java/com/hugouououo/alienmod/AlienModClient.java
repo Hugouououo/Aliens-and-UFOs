@@ -6,15 +6,18 @@ import com.hugouououo.alienmod.entity.ModEntities;
 import com.hugouououo.alienmod.entity.client.*;
 import com.hugouououo.alienmod.item.ModItems;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+//import net.fabricmc.fabric.api.blockrenderlayer.v1.Map;
 import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 //import net.minecraft.client.data.ModelProvider;
-import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.BlockRenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 //import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.util.Identifier;
+
+import static com.fasterxml.jackson.databind.type.LogicalType.Map;
 //import com.hugouououo.alienmod.block.entity.client.AlienChestModelRenderer;
 
 public class AlienModClient implements ClientModInitializer {
@@ -22,8 +25,8 @@ public class AlienModClient implements ClientModInitializer {
     public void onInitializeClient() {
 
         //Transparência nos blocos
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ALIEN_GOO_BLOCK, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ALIEN_GLASS, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.putBlock(ModBlocks.ALIEN_GOO_BLOCK, BlockRenderLayer.TRANSLUCENT);
+        BlockRenderLayerMap.putBlock(ModBlocks.ALIEN_GLASS, BlockRenderLayer.TRANSLUCENT);
 
         // Alien
         EntityModelLayerRegistry.registerModelLayer(AlienModel.ALIEN, AlienModel::getTexturedModelData);

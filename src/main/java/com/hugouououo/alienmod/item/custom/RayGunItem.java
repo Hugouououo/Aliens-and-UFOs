@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Predicate;
 
-public class RayGunItem extends RangedWeaponItem {
+public class  RayGunItem extends RangedWeaponItem {
 
     public static final Predicate<ItemStack> LASER_PROJECTILES = (stack) -> stack.isOf(Items.AIR);
     public RayGunItem(Settings settings) {

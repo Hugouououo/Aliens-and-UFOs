@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "alienmod:block/alien_steel",
+    "top": "alienmod:block/alien_steel",
+    "side": "alienmod:block/alien_steel"
+  }
+}

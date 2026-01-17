@@ -1,0 +1,32 @@
+{
+  "itemgroup.alienmod.alien": "Пришельцы",
+
+  "item.alienmod.alien_goo": "Инопланетная слизь",
+  "item.alienmod.alien_device": "Внеземное устройство",
+  "item.alienmod.alien_steel_ingot": "Слиток внеземной стали",
+  "item.alienmod.ray_gun": "Лучевой пистолет",
+  "item.alienmod.blaster": "Бластер",
+  "item.alienmod.alien_spawn_egg": "Яйцо призыва пришельца",
+
+  "block.alienmod.alien_goo_block": "Блок инопланетной слизи",
+  "block.alienmod.alien_steel": "Внеземная сталь",
+  "block.alienmod.alien_steel_slab": "Плита из внеземной стали",
+  "block.alienmod.alien_glass": "Внеземное стекло",
+  "block.alienmod.alien_copper": "Внеземная медь",
+
+  "entity.alienmod.alien": "Пришелец",
+
+  "block.alienmod.alien_chest": "Внеземной сундук",
+
+  "painting.alienmod.believe.title": "Верить",
+  "painting.alienmod.believe.author": "Неизвестный верующий",
+
+  "advancements.alienmod.mod_begins.title": "Я хочу верить",
+  "advancements.alienmod.mod_begins.description": "Следи за небом!",
+
+  "advancements.alienmod.enter_ufo.title": "Они пришли с миром",
+  "advancements.alienmod.enter_ufo.description": "Войдите в НЛО в первый раз (и, возможно, в последний).",
+
+  "advancements.alienmod.blaster.title": "Это не отсылка к Звёздным войнам.",
+  "advancements.alienmod.blaster.description": "Создайте бластер."
+}

@@ -21,6 +21,9 @@ public class ModSounds {
     // tiro c a ray gun
     public static final SoundEvent LASER_SHOOT = registerSoundEvent("laser_shoot");
 
+    // TIRO C BLASTER
+    public static final SoundEvent BLASTER_SHOOT = registerSoundEvent("blaster_shoot");
+
     // Alien carregando a arma
     public static final SoundEvent RAY_GUN_LOAD = registerSoundEvent("ray_gun_load");
 

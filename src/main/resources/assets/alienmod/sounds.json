@@ -5,6 +5,14 @@
       "alienmod:laser_shoot"
     ]
   },
+
+  "blaster_shoot": {
+    "subtitle": "sounds.alienmod.blaster_shoot",
+    "sounds": [
+      "alienmod:blaster_shoot"
+    ]
+  },
+
   "ray_gun_load": {
     "subtitle": "sounds.alienmod.ray_gun_load",
     "sounds": [

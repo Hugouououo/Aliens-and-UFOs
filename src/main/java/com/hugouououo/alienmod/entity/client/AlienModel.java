@@ -23,7 +23,7 @@ public class AlienModel extends BipedEntityModel<AlienRenderState> {
     public final ModelPart rightLeg;
     public final ModelPart leftLeg;
     public final ModelPart hat;
-    
+
     public AlienModel(ModelPart modelPart) {
         super(modelPart);
         this.head = modelPart.getChild(EntityModelPartNames.HEAD);
@@ -42,16 +42,16 @@ public class AlienModel extends BipedEntityModel<AlienRenderState> {
 
         ModelPartData modelPartData2 = modelPartData.addChild(
                 EntityModelPartNames.HEAD, ModelPartBuilder
-                .create()
-                .uv(0, 0)
-                .cuboid(-4.0F, -7.0F, -5.0F, 8.0F, 8.0F, 8.0F, new Dilation(0.0F)), ModelTransform.origin(0.0F, 5.0F, 1.0F));
+                        .create()
+                        .uv(0, 0)
+                        .cuboid(-4.0F, -7.0F, -5.0F, 8.0F, 8.0F, 8.0F, new Dilation(0.0F)), ModelTransform.origin(0.0F, 5.0F, 1.0F));
 
         modelPartData2.addChild(EntityModelPartNames.HAT, ModelPartBuilder.create(), ModelTransform.NONE);
 
         modelPartData.addChild(EntityModelPartNames.RIGHT_LEG, ModelPartBuilder
-            .create()
-            .uv(18, 28)
-            .cuboid(0.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, new Dilation(0.0F)), ModelTransform.origin(-3.0F, 16.0F, 0.0f));
+                .create()
+                .uv(18, 28)
+                .cuboid(0.0F, 0.0F, -1.0F, 2.0F, 8.0F, 2.0F, new Dilation(0.0F)), ModelTransform.origin(-3.0F, 16.0F, 0.0f));
 
         modelPartData.addChild(EntityModelPartNames.LEFT_LEG, ModelPartBuilder
                 .create()

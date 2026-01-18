@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "alienmod:alien_device"
+    },
+    "M": {
+      "item": "minecraft:oak_planks"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "V": {
+      "item": "minecraft:glass"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    }
+  },
+  "pattern": [
+    "VR ",
+    "DAN",
+    "  M"
+  ],
+  "result": {
+    "count": 1,
+    "id": "alienmod:blaster"
+  }
+}

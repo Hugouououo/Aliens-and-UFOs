@@ -1,6 +1,5 @@
 package com.hugouououo.alienmod.entity.custom;
 
-import com.hugouououo.alienmod.AlienMod;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -8,11 +7,8 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.hit.BlockHitResult;
@@ -21,15 +17,15 @@ import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class LaserProjectileEntity extends ProjectileEntity {
+public class BlueLaserProjectileEntity extends ProjectileEntity {
 
-    public LaserProjectileEntity(EntityType<? extends LaserProjectileEntity> entityType, World world) {
+    public BlueLaserProjectileEntity(EntityType<? extends BlueLaserProjectileEntity> entityType, World world) {
         super(entityType, world);
         this.setNoGravity(true);
     }
 
-    public static final TrackedData<Float> INITIAL_YAW = DataTracker.registerData(LaserProjectileEntity.class, TrackedDataHandlerRegistry.FLOAT);
-    public static final TrackedData<Float> INITIAL_PITCH = DataTracker.registerData(LaserProjectileEntity.class, TrackedDataHandlerRegistry.FLOAT);
+    public static final TrackedData<Float> INITIAL_YAW = DataTracker.registerData(BlueLaserProjectileEntity.class, TrackedDataHandlerRegistry.FLOAT);
+    public static final TrackedData<Float> INITIAL_PITCH = DataTracker.registerData(BlueLaserProjectileEntity.class, TrackedDataHandlerRegistry.FLOAT);
 
     public void setInitialRotation(float pitch, float yaw) {
         this.dataTracker.set(INITIAL_PITCH, pitch);

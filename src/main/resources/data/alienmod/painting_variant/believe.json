@@ -1,5 +1,11 @@
 {
   "asset_id": "alienmod:believe",
   "height": 3,
-  "width": 2
+  "width": 2,
+  "author": {
+    "translate": "painting.alienmod.believe.author"
+  },
+  "title": {
+    "translate": "painting.alienmod.believe.title"
+  }
 }

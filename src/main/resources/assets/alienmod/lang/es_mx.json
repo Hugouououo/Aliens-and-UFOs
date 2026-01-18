@@ -1,0 +1,32 @@
+{
+  "itemgroup.alienmod.alien": "Alienígena",
+
+  "item.alienmod.alien_goo": "Limo Alienígena",
+  "item.alienmod.alien_device": "Dispositivo de Otro Mundo",
+  "item.alienmod.alien_steel_ingot": "Lingote de Acero de Otro Mundo",
+  "item.alienmod.ray_gun": "Pistola de Rayos",
+  "item.alienmod.blaster": "Bláster",
+  "item.alienmod.alien_spawn_egg": "Huevo Generador de Alienígena",
+
+  "block.alienmod.alien_goo_block": "Bloque de Limo Alienígena",
+  "block.alienmod.alien_steel": "Acero de Otro Mundo",
+  "block.alienmod.alien_steel_slab": "Losa de Acero de Otro Mundo",
+  "block.alienmod.alien_glass": "Cristal de Otro Mundo",
+  "block.alienmod.alien_copper": "Cobre de Otro Mundo",
+
+  "entity.alienmod.alien": "Alienígena",
+
+  "block.alienmod.alien_chest": "Cofre de Otro Mundo",
+
+  "painting.alienmod.believe.title": "Creer",
+  "painting.alienmod.believe.author": "Creyente Desconocido",
+
+  "advancements.alienmod.mod_begins.title": "Quiero Creer",
+  "advancements.alienmod.mod_begins.description": "¡Mantén los ojos en el cielo!",
+
+  "advancements.alienmod.enter_ufo.title": "Vienen en Paz",
+  "advancements.alienmod.enter_ufo.description": "Entra a un OVNI por primera vez (y tal vez la última).",
+
+  "advancements.alienmod.blaster.title": "No es una referencia a Star Wars.",
+  "advancements.alienmod.blaster.description": "Fabrica un Bláster."
+}

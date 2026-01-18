@@ -285,4 +285,3 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
         }
     }
 }
-

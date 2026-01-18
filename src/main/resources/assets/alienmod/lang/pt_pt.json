@@ -1,14 +1,14 @@
 {
   "itemgroup.alienmod.alien": "Alienígena",
 
-  "item.alienmod.alien_goo": "Gosma Alienígena",
+  "item.alienmod.alien_goo": "Limo Alienígena",
   "item.alienmod.alien_device": "Dispositivo de Outro Mundo",
-  "item.alienmod.alien_steel_ingot": "Barra de Aço de Outro Mundo",
-  "item.alienmod.ray_gun": "Arma Laser",
+  "item.alienmod.alien_steel_ingot": "Lingote de Aço de Outro Mundo",
+  "item.alienmod.ray_gun": "Pistola de Raios",
   "item.alienmod.blaster": "Blaster",
-  "item.alienmod.alien_spawn_egg": "Ovo Gerador de Alienígena",
+  "item.alienmod.alien_spawn_egg": "Ovo de Geração de Alienígena",
 
-  "block.alienmod.alien_goo_block": "Bloco de Gosma Alienígena",
+  "block.alienmod.alien_goo_block": "Bloco de Limo Alienígena",
   "block.alienmod.alien_steel": "Aço de Outro Mundo",
   "block.alienmod.alien_steel_slab": "Laje de Aço de Outro Mundo",
   "block.alienmod.alien_glass": "Vidro de Outro Mundo",
@@ -22,12 +22,11 @@
   "painting.alienmod.believe.author": "Crente Desconhecido",
 
   "advancements.alienmod.mod_begins.title": "Eu Quero Acreditar",
-  "advancements.alienmod.mod_begins.description": "Fique de olho nos céus!",
+  "advancements.alienmod.mod_begins.description": "Mantém os olhos no céu!",
 
   "advancements.alienmod.enter_ufo.title": "Eles Vêm em Paz",
-  "advancements.alienmod.enter_ufo.description": "Entre em um OVNI pela primeira vez (e talvez a última).",
+  "advancements.alienmod.enter_ufo.description": "Entra num OVNI pela primeira vez (e talvez a última).",
 
   "advancements.alienmod.blaster.title": "Não é uma referência a Star Wars.",
-  "advancements.alienmod.blaster.description": "Crie um Blaster."
+  "advancements.alienmod.blaster.description": "Fabrica um Blaster."
 }
-

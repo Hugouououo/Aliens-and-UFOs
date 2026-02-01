@@ -77,7 +77,7 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
     }
 
     public void updateAttackType() {
-        if (this.getWorld() != null && !this.getWorld().isClient()) {
+        if (this.getEntityWorld() != null && !this.getEntityWorld().isClient()) {
             this.goalSelector.remove(this.alienRangedAttackGoal);
 
             ItemStack itemStack = this.getMainHandStack();
@@ -94,22 +94,22 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
             return;
         }
 
-        if (!this.getWorld().isClient()) {
-            LaserProjectileEntity laser = new LaserProjectileEntity(ModEntities.LASER_PROJECTILE, this.getWorld());
-            Vec3d direction = target.getPos().subtract(this.getPos()).normalize();
+        if (!this.getEntityWorld().isClient()) {
+            LaserProjectileEntity laser = new LaserProjectileEntity(ModEntities.LASER_PROJECTILE, this.getEntityWorld());
+            Vec3d direction = target.getEntityPos().subtract(this.getEntityPos()).normalize();
             Vec3d spawnPos = this.getEyePos().add(direction.multiply(1.0));
             laser.setPosition(spawnPos.x, spawnPos.y, spawnPos.z);
             laser.setVelocity(direction.multiply(3.5));
             laser.setPitch(this.getPitch());
             laser.setYaw(this.getYaw());
             laser.setOwner(this);
-            this.getWorld().spawnEntity(laser);
+            this.getEntityWorld().spawnEntity(laser);
 
             // som
-            float pitch = this.getWorld().random.nextFloat() * 0.4F + 1.0F;
+            float pitch = this.getEntityWorld().random.nextFloat() * 0.4F + 1.0F;
             float volume = 0.50F;
             BlockPos soundPos = this.getBlockPos();
-            this.getWorld().playSound(
+            this.getEntityWorld().playSound(
                     null,
                     soundPos,
                     ModSounds.LASER_SHOOT,
@@ -145,7 +145,7 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
     @Override
     public void onEquipStack(EquipmentSlot slot, ItemStack oldStack, ItemStack newStack) {
         super.onEquipStack(slot, oldStack, newStack);
-        if (!this.getWorld().isClient()) {
+        if (!this.getEntityWorld().isClient()) {
             this.updateAttackType();
         }
     }
@@ -225,7 +225,7 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
     protected SoundEvent getDeathSound() { return ModSounds.ALIEN_DEATH; }
 
     private void playAngrySound() {
-        this.getWorld().playSound(
+        this.getEntityWorld().playSound(
                 null,
                 this.getBlockPos(),
                 ModSounds.RAY_GUN_LOAD,
@@ -253,7 +253,7 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
     @Override
     public void tick() {
         super.tick();
-        if (!this.getWorld().isClient()) {
+        if (!this.getEntityWorld().isClient()) {
 
             // Garante que o alien tenha a Ray Gun
             if (!this.hasRayGunEquipped()) {
@@ -269,7 +269,7 @@ public class AlienEntity extends HostileEntity implements Angerable, RangedAttac
                 this.goalSelector.remove(this.alienRangedAttackGoal);
             }
         }
-        if (this.getWorld().isClient()) {
+        if (this.getEntityWorld().isClient()) {
             setupAnimationState();
         }
         // Logica p som de raiva

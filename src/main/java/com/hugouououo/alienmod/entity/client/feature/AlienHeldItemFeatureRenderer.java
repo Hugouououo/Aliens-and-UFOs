@@ -4,6 +4,7 @@ import com.hugouououo.alienmod.entity.client.AlienModel;
 import com.hugouououo.alienmod.entity.client.AlienRenderState;
 import net.minecraft.client.item.ItemModelManager;
 import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.command.OrderedRenderCommandQueue;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.item.ItemRenderer;
@@ -58,5 +59,10 @@ public class AlienHeldItemFeatureRenderer extends FeatureRenderer<AlienRenderSta
         }
 
         matrices.pop();
+    }
+
+    @Override
+    public void render(MatrixStack matrices, OrderedRenderCommandQueue queue, int light, AlienRenderState state, float limbAngle, float limbDistance) {
+
     }
 }

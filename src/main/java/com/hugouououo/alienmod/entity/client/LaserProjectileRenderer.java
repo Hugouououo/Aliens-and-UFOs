@@ -31,7 +31,7 @@ public class LaserProjectileRenderer extends EntityRenderer<LaserProjectileEntit
 
     LivingEntity shooter;
 
-    @Override
+    //@Override
     public void render(LaserProjectileRenderState state, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
         matrices.push(); // Salva o estado atual da MatrixStack
 

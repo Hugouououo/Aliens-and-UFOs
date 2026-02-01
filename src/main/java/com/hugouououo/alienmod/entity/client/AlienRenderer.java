@@ -6,10 +6,12 @@ import com.hugouououo.alienmod.entity.custom.AlienEntity;
 import com.hugouououo.alienmod.item.ModItems;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.command.OrderedRenderCommandQueue;
 import net.minecraft.client.render.entity.BipedEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.feature.HeldItemFeatureRenderer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
+import net.minecraft.client.render.state.CameraRenderState;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
@@ -52,6 +54,11 @@ public class AlienRenderer extends BipedEntityRenderer<AlienEntity, AlienRenderS
     public void render(AlienRenderState state, MatrixStack matrices, VertexConsumerProvider provider, int light) {
         matrices.scale(0.85f, 0.85f, 0.85f);
         super.render(state, matrices, provider, light);
+    }
+
+    @Override
+    public void render(AlienRenderState livingEntityRenderState, MatrixStack matrixStack, OrderedRenderCommandQueue orderedRenderCommandQueue, CameraRenderState cameraRenderState) {
+        super.render(livingEntityRenderState, matrixStack, orderedRenderCommandQueue, cameraRenderState);
     }
 }
 

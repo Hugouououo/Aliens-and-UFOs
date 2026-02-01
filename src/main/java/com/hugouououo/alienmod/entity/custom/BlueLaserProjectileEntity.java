@@ -43,7 +43,7 @@ public class BlueLaserProjectileEntity extends ProjectileEntity {
         super.tick();
 
         Vec3d velocity = this.getVelocity();
-        Vec3d currentPos = this.getPos();
+        Vec3d currentPos = this.getEntityPos();
         Vec3d nextPos = currentPos.add(velocity);
 
         HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
@@ -59,7 +59,7 @@ public class BlueLaserProjectileEntity extends ProjectileEntity {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
 
-        if (this.getOwner() instanceof LivingEntity owner && this.getWorld() instanceof ServerWorld serverWorld) {
+        if (this.getOwner() instanceof LivingEntity owner && this.getEntityWorld() instanceof ServerWorld serverWorld) {
             DamageSource source = serverWorld.getDamageSources().mobProjectile(this, owner);
             entity.damage(serverWorld, source, 6.0F);
 
@@ -71,7 +71,7 @@ public class BlueLaserProjectileEntity extends ProjectileEntity {
 
     @Override
     protected void onBlockHit(BlockHitResult blockHitResult) {
-        if (this.getWorld() instanceof ServerWorld serverWorld) {
+        if (this.getEntityWorld() instanceof ServerWorld serverWorld) {
             Vec3d hitPos = blockHitResult.getBlockPos().toCenterPos();
             serverWorld.spawnParticles(ParticleTypes.SMOKE, hitPos.x, hitPos.y, hitPos.z, 10, 0.1, 0.1, 0.1, 0.1);
         }

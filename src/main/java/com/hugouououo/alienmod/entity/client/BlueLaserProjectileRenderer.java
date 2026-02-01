@@ -29,7 +29,7 @@ public class BlueLaserProjectileRenderer extends EntityRenderer<BlueLaserProject
 
     LivingEntity shooter;
 
-    @Override
+    //@Override
     public void render(BlueLaserProjectileRenderState state, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
         matrices.push(); // Salva o estado atual da MatrixStack
 

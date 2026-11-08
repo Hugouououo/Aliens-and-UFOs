@@ -1,5 +1,6 @@
 package com.hugouououo.alienmod;
 
+
 import com.hugouououo.alienmod.block.ModBlocks;
 import com.hugouououo.alienmod.entity.ModEntities;
 import com.hugouououo.alienmod.entity.custom.AlienEntity;
@@ -10,7 +11,6 @@ import com.hugouououo.alienmod.structures.ModStructures;
 import com.hugouououo.alienmod.world.gen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
